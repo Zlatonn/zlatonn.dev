@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 
 import { faArrowDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button } from "@/components/ui/button";
 
 interface Prop {
   onNavigate: (sectionId: string) => void;
@@ -49,12 +50,10 @@ const Hero = ({ onNavigate }: Prop) => {
         </div>
 
         <div className="mt-3 md:mt-5 xl md:my-7">
-          <button className=" px-5 py-1 bg-light rounded-full md:text-lg xl:text-xl ">
-            <span className="pr-3">
-              <FontAwesomeIcon icon={faChevronRight} />
-            </span>
+          <Button className="rounded-full bg-light text-secondary md:text-lg xl:text-xl hover:bg-gradient-to-r hover:from-light hover:to-accent duration-300">
+            <FontAwesomeIcon icon={faChevronRight} />
             GET MY CV
-          </button>
+          </Button>
         </div>
       </div>
       <div onClick={() => onNavigate("about")} className="absolute w-full bottom-10 text-center text-accent md:text-2xl cursor-pointer">
