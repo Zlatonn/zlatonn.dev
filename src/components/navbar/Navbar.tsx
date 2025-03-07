@@ -1,21 +1,61 @@
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-interface Prop {
-  onNavigate: (sectionId: string) => void;
-}
+import { logoTitle, navList } from "@/contents/NavbarContent";
+import Logo from "./Logo";
+import NavItem from "./NavItem";
+import SidebarItem from "./SidebarItem";
 
-const Navbar = ({ onNavigate }: Prop) => {
-  // List of navigation items
-  const navList: string[] = ["Home", "About", "Projects", "Contact"];
+import { onNavigateProps as Props } from "@/types/common";
 
-  // Refer for nav hover effect and sidebar
+const Navbar = ({ onNavigate }: Props) => {
+  // Refer for nav hover effect
   const navHoverRef = useRef<HTMLDivElement>(null);
+
+  // Handle hover effect for navbar items
+  const handleHover = useCallback((e: React.MouseEvent<HTMLLIElement>) => {
+    const target = e.currentTarget;
+    gsap.to(navHoverRef.current, {
+      x: target.offsetLeft,
+      width: target.offsetWidth,
+      height: target.offsetHeight,
+      opacity: 1,
+      ease: "power2.out",
+    });
+  }, []);
+
+  // Handle mouse leave effect for navbar items
+  const handleLeave = useCallback(() => {
+    gsap.to(navHoverRef.current, {
+      opacity: 0,
+      ease: "power2.out",
+    });
+  }, []);
+
+  // Refer sidebar
   const sidebarRef = useRef<HTMLDivElement>(null);
+
+  // Open sidebar and prevent body scroll
+  const openSidebar = useCallback(() => {
+    gsap.to(sidebarRef.current, {
+      x: "0%",
+    });
+    // Disable scroll when sidebar is open
+    document.body.style.overflow = "hidden";
+  }, []);
+
+  // Close sidebar and restore body scroll
+  const closeSidebar = useCallback(() => {
+    gsap.to(sidebarRef.current, {
+      x: "100%",
+    });
+    // Enable scroll when sidebar is closed
+    document.body.style.overflow = "auto";
+  }, []);
 
   // Initialize GSAP animations for navHover and sidebar
   useGSAP(() => {
@@ -30,44 +70,6 @@ const Navbar = ({ onNavigate }: Prop) => {
     });
   });
 
-  // Open sidebar and prevent body scroll
-  const openSidebar = () => {
-    gsap.to(sidebarRef.current, {
-      x: "0%",
-    });
-    // Disable scroll when sidebar is open
-    document.body.style.overflow = "hidden";
-  };
-
-  // Close sidebar and restore body scroll
-  const closeSidebar = () => {
-    gsap.to(sidebarRef.current, {
-      x: "100%",
-    });
-    // Enable scroll when sidebar is closed
-    document.body.style.overflow = "auto";
-  };
-
-  // Handle hover effect for navbar items
-  const handleHover = (e: React.MouseEvent<HTMLLIElement>) => {
-    const target = e.currentTarget;
-    gsap.to(navHoverRef.current, {
-      x: target.offsetLeft,
-      width: target.offsetWidth,
-      height: target.offsetHeight,
-      opacity: 1,
-      ease: "power2.out",
-    });
-  };
-
-  // Handle mouse leave effect for navbar items
-  const handleLeave = () => {
-    gsap.to(navHoverRef.current, {
-      opacity: 0,
-      ease: "power2.out",
-    });
-  };
-
   return (
     <>
       {/* Background layer */}
@@ -76,22 +78,12 @@ const Navbar = ({ onNavigate }: Prop) => {
       {/* Main navbar content */}
       <div className="fixed inset-x-0 h-14 px-4 sm:px-6 flex justify-between items-center z-[12]">
         {/* Logo */}
-        <div className="px-3 py-1 bg-primary rounded-md cursor-pointer">
-          <span className="text-light font-icon ">ZLATONN</span>
-        </div>
+        <Logo title={logoTitle} />
 
         {/* Desktop navigation items */}
         <ul className="relative hidden md:flex justify-between items-center p-1">
           {navList.map((nav, i) => (
-            <li
-              key={`nav-${i}`}
-              onClick={() => onNavigate(nav.toLowerCase())}
-              onMouseEnter={handleHover}
-              onMouseLeave={handleLeave}
-              className="z-[13] px-8 py-2 text-sm font-semibold text-light cursor-pointer hover:text-secondary"
-            >
-              {nav}
-            </li>
+            <NavItem key={`nav-${i}`} content={nav} handleHover={handleHover} handleLeave={handleLeave} onNavigate={onNavigate} />
           ))}
           {/* Hover effect for desktop navbar */}
           <div ref={navHoverRef} className={`absolute top-1 bg-primary rounded-full h-5/6 w-1/${navList.length}`}></div>
@@ -112,16 +104,7 @@ const Navbar = ({ onNavigate }: Prop) => {
         </div>
         <ul className="mt-20">
           {navList.map((nav, i) => (
-            <li
-              key={`nav-${i}`}
-              onClick={() => {
-                onNavigate(nav.toLowerCase());
-                closeSidebar();
-              }}
-              className="py-5 text-center text-3xl font-code rounded-md cursor-pointer hover:text-primary hover:underline duration-300"
-            >
-              {nav}
-            </li>
+            <SidebarItem key={`sidebar-${i}`} content={nav} closeSidebar={closeSidebar} onNavigate={onNavigate} />
           ))}
         </ul>
       </div>

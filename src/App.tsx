@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import Hero from "./pages/Hero";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
