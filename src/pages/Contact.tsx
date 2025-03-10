@@ -1,16 +1,13 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 
+import PageContainer from "@/components/PageContainer";
+import InputField from "@/components/contact/InputField";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@radix-ui/react-label";
 
-interface Iform {
-  name: string;
-  email: string;
-  message: string;
-}
+import { formField } from "@/contents/ContactContent";
+
+import { Iform } from "@/types/contact";
 
 const Contact = () => {
   const {
@@ -24,76 +21,60 @@ const Contact = () => {
       message: "",
     },
   });
+
+  // Function to handle form submission
   const onSubmit: SubmitHandler<Iform> = (data) => console.log(data);
 
   return (
-    <div className="relative min-h-screen w-screen bg-gradient-to-b from-secondary to-primary">
+    <PageContainer className="relative min-h-screen w-screen bg-gradient-to-b from-secondary to-primary">
+      {/* Main container with gradient background */}
       <div className="py-28 flex flex-col items-center gap-20">
+        {/* Page title */}
         <h1 className="font-display text-3xl md:text-4xl xl:text-5xl font-regular text-light">CONTACT ME</h1>
+
         <div className="grid grid-cols-1 gap-10 xl:grid-cols-2 xl:gap-20">
+          {/* Left section: Introduction and message */}
           <div className="px-3 max-w-lg xl:max-w-xl flex flex-col gap-3">
             <h2 className="text-accent text-xl">Let's talk 💬</h2>
             <blockquote className="my-3 border-l-2 pl-6 italic text-light lg:text-xl xl:text-2xl">
-              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae numquam quod vero explicabo ea debitis, exercitationem,
-              eos itaque ad unde fugiat, mollitia odit alias tenetur nam non commodi sint! Nobis."
+              "Feel free to reach out to me! I'm always excited to connect with like-minded individuals, discuss ideas, and explore new
+              opportunities. Whether it's a project, collaboration, or just a friendly conversation, I'd love to hear from you."
             </blockquote>
           </div>
 
+          {/* Right section: Contact form */}
           <form onSubmit={handleSubmit(onSubmit)} className="px-3 max-w-lg flex flex-col gap-5 items-center text-light">
-            <div className="grid w-full items-center gap-1.5">
-              <Label htmlFor="name">Name</Label>
-              <Input
-                type="text"
-                id="name"
-                placeholder="enter your name..."
-                {...register("name", {
-                  required: "Name is required.",
-                })}
-                className="bg-light/50 placeholder:text-light border-none outline-none"
+            {/* Dynamically render input fields from formField array */}
+            {formField.map(({ id, label, formType, inputType, placeholder, pattern }, i) => (
+              <InputField
+                key={`field-${i}`}
+                id={id}
+                label={label}
+                formType={formType}
+                inputType={inputType}
+                placeholder={placeholder}
+                register={register}
+                errors={errors}
+                pattern={pattern}
               />
-              {errors.name && <p className="w-fit mt-1 text-orange-300 text-sm">{errors.name.message}</p>}
-            </div>
-            <div className="grid w-full items-center gap-1.5">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                type="text"
-                id="email"
-                placeholder="enter your email..."
-                {...register("email", {
-                  required: "Email is required.",
-                  pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                    message: "Invalid email format.",
-                  },
-                })}
-                className="bg-light/50 placeholder:text-light border-none outline-none"
-              />
-              {errors.email && <p className="w-fit mt-1 text-orange-300 text-sm">{errors.email.message}</p>}
-            </div>
-            <div className="grid w-full items-center gap-1.5">
-              <Label htmlFor="message">Message</Label>
-              <Textarea
-                id="message"
-                placeholder="enter your message..."
-                {...register("message", {
-                  required: "Message is required.",
-                })}
-                className="bg-light/50 placeholder:text-light border-none outline-none"
-              />
-              {errors.message && <p className="w-fit mt-1 text-orange-300 text-sm">{errors.message.message}</p>}
-            </div>
+            ))}
 
+            {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full mt-5 bg-accent text-secondary hover:bg-accent hover:-translate-y-1 hover:shadow-md hover:shadow-secondary transition-all duration-500"
+              className="w-full mt-5 bg-accent text-secondary hover:bg-accent 
+                         hover:-translate-y-1 hover:shadow-md hover:shadow-secondary 
+                         transition-all duration-500"
             >
               SUBMIT
             </Button>
           </form>
         </div>
       </div>
+
+      {/* Footer Component */}
       <Footer />
-    </div>
+    </PageContainer>
   );
 };
 
