@@ -3,6 +3,7 @@ import PreText from "@/components/hero/PreText";
 import HeroTitle from "@/components/hero/HeroTitle";
 import HeroButton from "@/components/hero/HeroButton";
 import ScrollDownIndicator from "@/components/hero/ScrollDownIndicator";
+import RotateText from "@/components/hero/RotateText";
 
 import { preText } from "@/contents/HeroContent";
 import { heroTitle } from "@/contents/HeroContent";
@@ -20,6 +21,10 @@ const Hero = ({ onNavigate }: Props) => {
           <HeroTitle titles={heroTitle} />
 
           <HeroButton title="GET MY CV" />
+        </div>
+
+        <div className="relative w-40 md:w-52 ">
+          <RotateText />
         </div>
 
         {/* Scroll down Indicator*/}
