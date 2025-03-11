@@ -4,6 +4,7 @@ import HeroTitle from "@/components/hero/HeroTitle";
 import HeroButton from "@/components/hero/HeroButton";
 import ScrollDownIndicator from "@/components/hero/ScrollDownIndicator";
 import RotateText from "@/components/hero/RotateText";
+import EyeTracking from "@/components/hero/EyeTracking";
 
 import { preText } from "@/contents/HeroContent";
 import { heroTitle } from "@/contents/HeroContent";
@@ -25,6 +26,9 @@ const Hero = ({ onNavigate }: Props) => {
 
         <div className="relative w-40 md:w-52 ">
           <RotateText />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <EyeTracking />
+          </div>
         </div>
 
         {/* Scroll down Indicator*/}
