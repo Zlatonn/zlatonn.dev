@@ -14,7 +14,7 @@ import { onNavigateProps as Props } from "@/types/common";
 const Hero = ({ onNavigate }: Props) => {
   return (
     <PageContainer className="bg-gradient-to-b from-secondary to-primary">
-      <div className="h-screen flex flex-col justify-between items-center">
+      <div className="min-h-screen flex flex-col justify-between items-center">
         {/* Title */}
         <div className="max-w-5xl pt-36 flex flex-col gap-5 text-center">
           <PreText text={preText} className="text-accent" />
