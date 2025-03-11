@@ -1,3 +1,7 @@
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Marquee from "react-fast-marquee";
 
 import PageContainer from "@/components/PageContainer";
@@ -7,14 +11,37 @@ import TechBox from "@/components/projects/TechBox";
 
 import { projects, techStacks } from "@/contents/ProjectContent";
 
+// Register gsap plugin
+gsap.registerPlugin(ScrollTrigger);
+
 const Projects = () => {
+  // Reference to the slide wrapper for animation
+  const slideRef = useRef(null);
+
+  // Create sliding animation for project marquee
+  useGSAP(() => {
+    gsap.from(slideRef.current, {
+      scrollTrigger: {
+        trigger: slideRef.current,
+        start: "top 95%",
+        end: "+=300px'",
+        scrub: true,
+      },
+      rotate: 20,
+      xPercent: 100,
+      yPercent: 50,
+      opacity: 0,
+    });
+  });
+
   return (
     <PageContainer className="bg-secondary ">
+      {/* Projects section */}
       <div className="py-28 flex flex-col items-center">
         <ProjectTitle title={"PROJECTS"} />
 
         {/* Slide wrapper */}
-        <div className="max-w-5xl w-[95%] mt-10 scale-95 sm:scale-100">
+        <div ref={slideRef} className="max-w-5xl w-[95%] min-h-[380px] mt-10 scale-95 sm:scale-100">
           <Marquee
             pauseOnHover={true}
             gradient={true}
@@ -38,6 +65,7 @@ const Projects = () => {
         </div>
       </div>
 
+      {/* Tech stack section */}
       <div className="py-28 flex flex-col items-center ">
         <ProjectTitle title={"MY TECH STACK"} />
         {/* Icons Warpper*/}
