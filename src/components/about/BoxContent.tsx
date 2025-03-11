@@ -55,12 +55,14 @@ const BoxContent = ({ paragraphs }: Props) => {
     });
   });
   return (
-    <div className="relative m-8 px-5 pt-5 pb-20 md:m-14 md:px-8 md:pt-8 md:pb-28 lg:px-10 lg:pt-10 lg:pb-36">
-      <div className="relative text-light font-code font-semibold text-left text-sm sm:text-base md:text-xl 2xl:text-2xl z-[1]">
-        <span ref={textRef}></span>
-        <span ref={cursorRef}>|</span>
+    <div>
+      <div className="relative m-8 px-5 pt-5 pb-20 md:m-12 md:px-8 md:pt-8 md:pb-24 lg:px-10 lg:pt-10 lg:pb-28">
+        <div className="relative text-light font-code font-semibold text-left text-sm sm:text-base md:text-xl 2xl:text-2xl z-[1]">
+          <span ref={textRef}></span>
+          <span ref={cursorRef}>|</span>
+        </div>
+        <div ref={boxRef} className="absolute inset-0 bg-secondary rounded-3xl border-8 border-primary"></div>
       </div>
-      <div ref={boxRef} className="absolute inset-0 bg-secondary rounded-md"></div>
     </div>
   );
 };
