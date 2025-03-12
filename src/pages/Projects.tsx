@@ -41,7 +41,7 @@ const Projects = () => {
         <ProjectTitle title={"PROJECTS"} />
 
         {/* Slide wrapper */}
-        <div ref={slideRef} className="max-w-5xl w-[95%] min-h-[380px] mt-10 scale-95 sm:scale-100">
+        <div ref={slideRef} className="max-w-5xl w-[95%] min-h-[400px] mt-10 scale-95 sm:scale-100">
           <Marquee
             pauseOnHover={true}
             gradient={true}

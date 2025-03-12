@@ -1,10 +1,10 @@
 import { TechStackProps as Props } from "@/types/projects";
 
-const TechStack = ({ techs }: Props) => {
+const TechStack = ({ techs, className }: Props) => {
   return (
-    <div className="flex gap-2 text-xs text-secondary">
+    <div className="flex gap-2">
       {techs.map((tech, i) => (
-        <span key={`tech-${i}`} className="px-2 py-1 bg-light rounded-md">
+        <span key={`tech-${i}`} className={`px-2 py-1 bg-light text-xs text-secondary rounded-md ${className}`}>
           {tech}
         </span>
       ))}

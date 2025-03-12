@@ -23,7 +23,7 @@ export const projects = [
     techStack: [["React", "Tailwind", "Zustand"]],
   },
   {
-    imgURL: "https://github.com/Zlatonn/react-money-tracker/raw/main/src/assets/screenshots/income.png",
+    imgURL: "https://github.com/Zlatonn/multi-step-form/raw/main/images/login.png",
     link: "https://github.com/Zlatonn/multi-step-form",
     title: "Multi Step Form",
     duration: "Jan 2025 ~ Feb 2025",

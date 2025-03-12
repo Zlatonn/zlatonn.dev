@@ -13,6 +13,7 @@ export interface ProjectCardProps {
 
 export interface TechStackProps {
   techs: string[];
+  className: string;
 }
 
 export interface TechBoxProps {
