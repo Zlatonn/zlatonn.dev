@@ -9,6 +9,7 @@ export interface ProjectCardProps {
   duration: string;
   detail: string;
   techStack: string[][];
+  setActiveImg: (imgURL: string) => void;
 }
 
 export interface TechStackProps {
