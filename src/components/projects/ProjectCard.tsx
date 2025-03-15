@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { ProjectCardProps as Props } from "@/types/projects";
 
-const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActiveImg }: Props) => {
+const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActiveProject }: Props) => {
   // Refs for card and content elements
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -47,9 +47,9 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
           start: `center-=100px center`,
           end: () => "+=" + (contentRef.current ? contentRef.current.offsetHeight : 0),
           toggleActions: "restart none none reverse",
-          // setActiveImg
-          onEnter: () => setActiveImg(imgURL),
-          onEnterBack: () => setActiveImg(imgURL),
+          // setActiveProject
+          onEnter: () => setActiveProject({ imgURL, link }),
+          onEnterBack: () => setActiveProject({ imgURL, link }),
         },
         x: -200,
         opacity: 0,

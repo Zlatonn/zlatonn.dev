@@ -9,7 +9,7 @@ export interface ProjectCardProps {
   duration: string;
   detail: string;
   techStack: string[][];
-  setActiveImg: (imgURL: string) => void;
+  setActiveProject: React.Dispatch<React.SetStateAction<{ imgURL: string; link: string }>>;
 }
 
 export interface TechStackProps {

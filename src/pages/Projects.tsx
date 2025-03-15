@@ -15,10 +15,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
   // State to track the active project image and the scroll progress
-  const [activeImg, setActiveImg] = useState(projects[0].imgURL);
+  const [activeProject, setActiveProject] = useState({
+    imgURL: projects[0].imgURL,
+    link: projects[0].link,
+  });
 
   // References to track the DOM elements of the image container and content
-  const imageRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLAnchorElement>(null);
   const contentWrapperRef = useRef<HTMLDivElement>(null);
 
   // Calculate the scroll end point based on the content and image sizes
@@ -68,16 +71,16 @@ const Projects = () => {
                 duration={duration}
                 detail={detail}
                 techStack={techStack}
-                setActiveImg={setActiveImg}
+                setActiveProject={setActiveProject}
               />
             ))}
           </div>
           {/* Image Container */}
-          <div ref={imageRef} className="hidden md:flex justify-center items-center w-1/2 h-80">
+          <a ref={imageRef} href={activeProject.link} target="_blank" className="hidden md:flex justify-center items-center w-1/2 h-80">
             <div className="size-full mx-5 lg:mx-10 rounded-2xl overflow-hidden border-[1px] border-secondary scale-90 rotate-3 shadow-lg shadow-light/30 hover:scale-100 hover:rotate-0 hover:shadow-primary duration-500">
-              <img src={activeImg} alt="active_img" className="size-full object-cover" />
+              <img src={activeProject.imgURL} alt="active_img" className="size-full object-cover" />
             </div>
-          </div>
+          </a>
         </div>
       </div>
 
