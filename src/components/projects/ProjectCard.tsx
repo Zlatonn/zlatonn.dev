@@ -21,8 +21,8 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
-    // Create fade up & scale animation for mobile view (max-width: 1023px)
-    mm.add("(max-width: 1023px)", () => {
+    // Create fade up & scale animation for mobile view (max-width: 767px)
+    mm.add("(max-width: 767px)", () => {
       gsap.from(cardRef.current, {
         scrollTrigger: {
           trigger: cardRef.current,
@@ -39,8 +39,8 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
       });
     });
 
-    // Create slide left animation for desktop view (min-width: 1024px)
-    mm.add("(min-width:1024px)", () => {
+    // Create slide left animation for tablet view (min-width: 768px)
+    mm.add("(min-width:768px)", () => {
       gsap.from(contentRef.current, {
         scrollTrigger: {
           trigger: contentRef.current,
@@ -65,12 +65,12 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
   return (
     <div
       ref={cardRef}
-      className="mx-5 p-5 flex flex-col gap-10 shadow-sm shadow-light rounded-3xl bg-gradient-to-b from-secondary to-primary lg:flex-row lg:gap-20 lg:shadow-none lg:rounded-none lg:bg-none "
+      className="mx-10 lg:mx-5 p-5 flex flex-col gap-10 shadow-sm shadow-light rounded-3xl bg-gradient-to-b from-secondary to-primary md:flex-row md:gap-20 md:shadow-none md:rounded-none md:bg-none "
     >
       {/* Content */}
       <div ref={contentRef} className="text-light flex flex-col gap-5">
         {/* Link to project */}
-        <a href={link} target="_blank" className="md:text-lg lg:text-2xl flex gap-2 items-center cursor-pointer lg:text-accent group/link">
+        <a href={link} target="_blank" className="md:text-lg lg:text-2xl flex gap-2 items-center cursor-pointer md:text-accent group/link">
           <h2 className="font-semibold group-hover/link:underline">{`· ${title}`}</h2>
           <span className="-rotate-45 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 duration-300 ">
             <FontAwesomeIcon icon={faArrowRight} />
@@ -82,13 +82,13 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
         <div className="text-xs md:text-sm lg:text-base text-light/70 font-light">{detail}</div>
         {/* Tech stack */}
         {techStack.map((techs, i) => (
-          <TechStack key={`techs-${i}`} techs={techs} className="lg:bg-accent" />
+          <TechStack key={`techs-${i}`} techs={techs} className="md:bg-accent" />
         ))}
       </div>
 
       {/* Image section (smaller screens) */}
-      <div className="block lg:hidden self-center w-full sm:w-2/3 rounded-2xl overflow-hidden scale-90 rotate-3 hover:shadow-md hover:shadow-secondary hover:scale-100 hover:rotate-0 duration-500">
-        <img src={imgURL} alt={`${title}-img`} className="object-cover w-full h-64 md:h-80" />
+      <div className="block md:hidden self-center w-full sm:w-2/3 rounded-2xl overflow-hidden scale-90 rotate-3 hover:shadow-md hover:shadow-secondary hover:scale-100 hover:rotate-0 duration-500">
+        <img src={imgURL} alt={`${title}-img`} className="object-cover w-full h-64" />
       </div>
     </div>
   );

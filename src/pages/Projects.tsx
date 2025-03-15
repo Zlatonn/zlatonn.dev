@@ -25,7 +25,7 @@ const Projects = () => {
   // Calculate the scroll end point based on the content and image sizes
   const getScrollEndPoint = useCallback(() => {
     if (contentWrapperRef.current && imageRef.current) {
-      return "+=" + (contentWrapperRef.current.offsetHeight - imageRef.current.offsetHeight);
+      return "+=" + (contentWrapperRef.current.offsetHeight - imageRef.current.offsetHeight + 50);
     }
     return "+=0";
   }, []);
@@ -43,7 +43,7 @@ const Projects = () => {
     const mm = gsap.matchMedia();
 
     // Apply the image pin animation only on larger screens (min-width: 1024px)
-    mm.add("(min-width:1024px)", () => {
+    mm.add("(min-width:768px)", () => {
       gsap.from(imageRef.current, {
         scrollTrigger: {
           trigger: imageRef.current,
@@ -66,9 +66,9 @@ const Projects = () => {
       <div className="py-28 flex flex-col items-center gap-20">
         {/* Title for the Projects section */}
         <ProjectTitle title={"PROJECTS"} />
-        <div className="relative max-w-7xl flex flex-col gap-10 lg:flex-row lg:gap-0">
+        <div className="relative max-w-7xl flex flex-col gap-10 md:flex-row md:gap-0">
           {/* Project Cards */}
-          <div ref={contentWrapperRef} className="flex flex-col gap-20 w-full lg:w-1/2">
+          <div ref={contentWrapperRef} className="flex flex-col gap-20 w-full md:w-1/2">
             {projects.map(({ imgURL, link, title, duration, detail, techStack }, i) => (
               <ProjectCard
                 key={`project-${i}`}
@@ -83,8 +83,8 @@ const Projects = () => {
             ))}
           </div>
           {/* Image Container */}
-          <div ref={imageRef} className="hidden lg:flex justify-center items-center w-1/2 h-80">
-            <div className="size-full mx-10 rounded-2xl overflow-hidden scale-90 rotate-3 shadow-lg shadow-light/30 hover:scale-100 hover:rotate-0 hover:shadow-primary duration-500">
+          <div ref={imageRef} className="hidden md:flex justify-center items-center w-1/2 h-80">
+            <div className="size-full mx-5 lg:mx-10 rounded-2xl overflow-hidden scale-90 rotate-3 shadow-lg shadow-light/30 hover:scale-100 hover:rotate-0 hover:shadow-primary duration-500">
               <img src={activeImg} alt="active_img" className="size-full object-cover" />
             </div>
           </div>
@@ -92,11 +92,11 @@ const Projects = () => {
           {/* Progress bar */}
           <div
             style={{ height: `${progress}%` }}
-            className={`hidden lg:block absolute top-0 left-3 w-1 rounded-full bg-gradient-to-b from-gray-300 to-accent transition-all duration-100`}
+            className={`hidden md:block absolute top-0 left-5 lg:left-3 w-1 rounded-full bg-gradient-to-b from-gray-300 to-accent transition-all duration-100`}
           ></div>
 
           {/* Hidden bar */}
-          <div className={`hidden lg:block absolute top-0 left-3 w-1 h-full rounded-full bg-light/50`}></div>
+          <div className={`hidden md:block absolute top-0 left-5 lg:left-3 w-1 h-full rounded-full bg-light/50`}></div>
         </div>
       </div>
 
