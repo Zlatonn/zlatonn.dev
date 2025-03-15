@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Marquee from "react-fast-marquee";
 
 import PageContainer from "@/components/PageContainer";
 import ProjectTitle from "@/components/projects/ProjectTitle";
@@ -32,6 +33,10 @@ const Projects = () => {
     return "+=0";
   }, []);
 
+  // References to track the DOM elements of the left & right marquee
+  const leftMarqueeRef = useRef<HTMLDivElement>(null);
+  const rightMarqueeRef = useRef<HTMLDivElement>(null);
+
   useGSAP(() => {
     // Creating a GSAP matchMedia instance to apply responsive animations
     const mm = gsap.matchMedia();
@@ -46,6 +51,36 @@ const Projects = () => {
           scrub: true,
           end: () => getScrollEndPoint(),
         },
+      });
+    });
+
+    // Apply the slide from left side animation only on larger screens (min-width: 1024px)
+    mm.add("(min-width:768px)", () => {
+      gsap.from(leftMarqueeRef.current, {
+        scrollTrigger: {
+          trigger: leftMarqueeRef.current,
+          start: "top 80%",
+          end: () => "+=" + (leftMarqueeRef.current ? leftMarqueeRef.current.offsetHeight : 0),
+          toggleActions: "restart none none reverse",
+        },
+        x: 100,
+        y: 10,
+        opacity: 0,
+      });
+    });
+
+    // Apply the slide from right side  animation only on larger screens (min-width: 1024px)
+    mm.add("(min-width:768px)", () => {
+      gsap.from(rightMarqueeRef.current, {
+        scrollTrigger: {
+          trigger: rightMarqueeRef.current,
+          start: "top 80%",
+          end: () => "+=" + (rightMarqueeRef.current ? rightMarqueeRef.current.offsetHeight : 0),
+          toggleActions: "restart none none reverse",
+        },
+        x: -100,
+        y: 10,
+        opacity: 0,
       });
     });
 
@@ -87,11 +122,52 @@ const Projects = () => {
       {/* Tech stack section */}
       <div className="py-28 flex flex-col items-center gap-20 ">
         <ProjectTitle title={"MY TECH STACK"} />
-        {/* Icons Wrapper*/}
-        <div className="max-w-4xl flex flex-wrap justify-center gap-2 lg:scale-110">
-          {techStacks.map((techStack, i) => (
+        {/* Icons wrapper for mobile*/}
+        <div className="md:hidden max-w-4xl flex flex-wrap justify-center gap-2 lg:scale-110">
+          {[...techStacks.development, ...techStacks.tools].map((techStack, i) => (
             <TechBox key={`techBox-${i}`} icon={techStack.icon} title={techStack.title} />
           ))}
+        </div>
+
+        {/* Marquee wrapper for tablet*/}
+        <div className="hidden w-full md:flex flex-col gap-20">
+          {/* Go left marquee */}
+          <div ref={leftMarqueeRef} className="w-full rotate-3 overflow-hidden">
+            <Marquee
+              direction="left"
+              pauseOnHover={true}
+              autoFill={true}
+              gradient={true}
+              gradientColor="#222831"
+              gradientWidth={100}
+              speed={50}
+            >
+              <div className="flex py-3">
+                {techStacks.development.map((techStack, i) => (
+                  <TechBox key={`techBox-dev-${i}`} icon={techStack.icon} title={techStack.title} />
+                ))}
+              </div>
+            </Marquee>
+          </div>
+
+          {/* Go right marquee */}
+          <div ref={rightMarqueeRef} className="w-full -rotate-3 overflow-hidden">
+            <Marquee
+              direction="right"
+              pauseOnHover={true}
+              autoFill={true}
+              gradient={true}
+              gradientColor="#222831"
+              gradientWidth={100}
+              speed={50}
+            >
+              <div className="flex py-3">
+                {techStacks.tools.map((techStack, i) => (
+                  <TechBox key={`techBox-tools-${i}`} icon={techStack.icon} title={techStack.title} />
+                ))}
+              </div>
+            </Marquee>
+          </div>
         </div>
       </div>
     </PageContainer>
