@@ -16,7 +16,6 @@ gsap.registerPlugin(ScrollTrigger);
 const Projects = () => {
   // State to track the active project image and the scroll progress
   const [activeImg, setActiveImg] = useState(projects[0].imgURL);
-  const [progress, setProgress] = useState(0);
 
   // References to track the DOM elements of the image container and content
   const imageRef = useRef<HTMLDivElement>(null);
@@ -28,14 +27,6 @@ const Projects = () => {
       return "+=" + (contentWrapperRef.current.offsetHeight - imageRef.current.offsetHeight + 50);
     }
     return "+=0";
-  }, []);
-
-  // Update progress bar and set progress based on scroll position
-  const updateProgress = useCallback((self: ScrollTrigger) => {
-    const progressPercent = Math.floor(Number(self.progress) * 100);
-    const progressPerSection = 100 / projects.length;
-    const adjustedProgress = Math.floor(progressPercent / progressPerSection) * progressPerSection;
-    setProgress(adjustedProgress);
   }, []);
 
   useGSAP(() => {
@@ -51,7 +42,6 @@ const Projects = () => {
           start: "center center",
           scrub: true,
           end: () => getScrollEndPoint(),
-          onUpdate: (self) => updateProgress(self),
         },
       });
     });
@@ -84,19 +74,10 @@ const Projects = () => {
           </div>
           {/* Image Container */}
           <div ref={imageRef} className="hidden md:flex justify-center items-center w-1/2 h-80">
-            <div className="size-full mx-5 lg:mx-10 rounded-2xl overflow-hidden scale-90 rotate-3 shadow-lg shadow-light/30 hover:scale-100 hover:rotate-0 hover:shadow-primary duration-500">
+            <div className="size-full mx-5 lg:mx-10 rounded-2xl overflow-hidden border-[1px] border-secondary scale-90 rotate-3 shadow-lg shadow-light/30 hover:scale-100 hover:rotate-0 hover:shadow-primary duration-500">
               <img src={activeImg} alt="active_img" className="size-full object-cover" />
             </div>
           </div>
-
-          {/* Progress bar */}
-          <div
-            style={{ height: `${progress}%` }}
-            className={`hidden md:block absolute top-0 left-5 lg:left-3 w-1 rounded-full bg-gradient-to-b from-gray-300 to-accent transition-all duration-100`}
-          ></div>
-
-          {/* Hidden bar */}
-          <div className={`hidden md:block absolute top-0 left-5 lg:left-3 w-1 h-full rounded-full bg-light/50`}></div>
         </div>
       </div>
 
