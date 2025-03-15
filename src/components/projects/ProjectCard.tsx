@@ -86,10 +86,14 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
         ))}
       </div>
 
-      {/* Image section (smaller screens) */}
-      <div className="block md:hidden self-center w-full sm:w-2/3 rounded-2xl overflow-hidden scale-90 rotate-3 hover:shadow-md hover:shadow-secondary hover:scale-100 hover:rotate-0 duration-500">
+      {/* Image section (mobile screens) */}
+      <a
+        href={link}
+        target="_blank"
+        className="block md:hidden self-center w-full sm:w-2/3 rounded-2xl overflow-hidden scale-90 rotate-3 hover:shadow-md hover:shadow-secondary hover:scale-100 hover:rotate-0 duration-500"
+      >
         <img src={imgURL} alt={`${title}-img`} className="object-cover w-full h-64" />
-      </div>
+      </a>
     </div>
   );
 };
