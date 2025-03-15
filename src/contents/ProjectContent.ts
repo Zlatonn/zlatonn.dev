@@ -5,7 +5,7 @@ export const projects = [
     title: "Warranty Expiry Checker",
     duration: "Jan 2025 ~ Feb 2025",
     detail:
-      "· A web application for tracking warranty expiration dates of items. Users can log in, add items, edit detail, delete items, and filter items based on warranty status.",
+      "A web application for tracking warranty expiration dates of items. Users can log in, add items, edit detail, delete items, and filter items based on warranty status.",
     techStack: [
       ["React", "Tailwind", "DaisyUI"],
       ["Node.js", "TypeScript", "Express", "SQLite"],
@@ -15,10 +15,9 @@ export const projects = [
     imgURL: "https://github.com/Zlatonn/react-money-tracker/raw/main/src/assets/screenshots/income.png",
     link: "https://github.com/Zlatonn/react-money-tracker",
     title: "React Money Tracker",
-    duration: "Jan 2025 ~ Feb 2025",
-
+    duration: "Dec 2024 ~ Jan 2025",
     detail:
-      "· A financial management application, React Money Tracker helps users track their income and expenses, summarize financial data, and categorize users into different income sections for a clear understanding of their financial standing.",
+      "A financial management application, React Money Tracker helps users track their income and expenses, summarize financial data, and categorize users into different income sections for a clear understanding of their financial standing.",
 
     techStack: [["React", "Tailwind", "Zustand"]],
   },
@@ -26,8 +25,8 @@ export const projects = [
     imgURL: "https://github.com/Zlatonn/multi-step-form/raw/main/images/login.png",
     link: "https://github.com/Zlatonn/multi-step-form",
     title: "Multi Step Form",
-    duration: "Jan 2025 ~ Feb 2025",
-    detail: "· A web-based multi-step quiz application that allows users to answer questions step by step and get results at the end.",
+    duration: "Sep 2024 ~ Oct 2024",
+    detail: "A web-based multi-step quiz application that allows users to answer questions step by step and get results at the end.",
     techStack: [["HTML", "CSS", "JavaScript"]],
   },
 ];
