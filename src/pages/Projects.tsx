@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import gsap from "gsap";
+import { useCallback, useRef, useState } from "react";
+import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Marquee from "react-fast-marquee";
@@ -11,45 +11,92 @@ import TechBox from "@/components/projects/TechBox";
 
 import { projects, techStacks } from "@/contents/ProjectContent";
 
-// Register gsap plugin
+// Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
-  // Reference to the slide wrapper for animation
-  const slideRef = useRef(null);
+  // State to track the active project image and the scroll progress
+  const [activeProject, setActiveProject] = useState({
+    imgURL: projects[0].imgURL,
+    link: projects[0].link,
+  });
 
-  // Create sliding animation for project marquee
+  // References to track the DOM elements of the image container and content
+  const imageRef = useRef<HTMLAnchorElement>(null);
+  const contentWrapperRef = useRef<HTMLDivElement>(null);
+
+  // Calculate the scroll end point based on the content and image sizes
+  const getScrollEndPoint = useCallback(() => {
+    if (contentWrapperRef.current && imageRef.current) {
+      return "+=" + (contentWrapperRef.current.offsetHeight - imageRef.current.offsetHeight + 50);
+    }
+    return "+=0";
+  }, []);
+
+  // References to track the DOM elements of the left & right marquee
+  const leftMarqueeRef = useRef<HTMLDivElement>(null);
+  const rightMarqueeRef = useRef<HTMLDivElement>(null);
+
   useGSAP(() => {
-    gsap.from(slideRef.current, {
-      scrollTrigger: {
-        trigger: slideRef.current,
-        start: "top 95%",
-        end: "+=300px'",
-        scrub: true,
-      },
-      rotate: 20,
-      xPercent: 100,
-      yPercent: 50,
-      opacity: 0,
+    // Creating a GSAP matchMedia instance to apply responsive animations
+    const mm = gsap.matchMedia();
+
+    // Apply the image pin animation only on larger screens (min-width: 1024px)
+    mm.add("(min-width:768px)", () => {
+      gsap.from(imageRef.current, {
+        scrollTrigger: {
+          trigger: imageRef.current,
+          pin: true,
+          start: "center center",
+          scrub: true,
+          end: () => getScrollEndPoint(),
+        },
+      });
     });
+
+    // Apply the slide from left side animation only on larger screens (min-width: 1024px)
+    mm.add("(min-width:768px)", () => {
+      gsap.from(leftMarqueeRef.current, {
+        scrollTrigger: {
+          trigger: leftMarqueeRef.current,
+          start: "top 80%",
+          end: () => "+=" + (leftMarqueeRef.current ? leftMarqueeRef.current.offsetHeight : 0),
+          toggleActions: "restart none none reverse",
+        },
+        x: 100,
+        y: 10,
+        opacity: 0,
+      });
+    });
+
+    // Apply the slide from right side  animation only on larger screens (min-width: 1024px)
+    mm.add("(min-width:768px)", () => {
+      gsap.from(rightMarqueeRef.current, {
+        scrollTrigger: {
+          trigger: rightMarqueeRef.current,
+          start: "top 80%",
+          end: () => "+=" + (rightMarqueeRef.current ? rightMarqueeRef.current.offsetHeight : 0),
+          toggleActions: "restart none none reverse",
+        },
+        x: -100,
+        y: 10,
+        opacity: 0,
+      });
+    });
+
+    // Cleanup function to revert the matchMedia settings on component unmount
+    return () => mm.revert();
   });
 
   return (
-    <PageContainer className="bg-secondary ">
+    <PageContainer className="bg-secondary">
       {/* Projects section */}
-      <div className="py-28 flex flex-col items-center">
+      <div className="py-28 flex flex-col items-center gap-20">
+        {/* Title for the Projects section */}
         <ProjectTitle title={"PROJECTS"} />
-
-        {/* Slide wrapper */}
-        <div ref={slideRef} className="max-w-5xl w-[95%] min-h-[400px] mt-10 scale-95 sm:scale-100">
-          <Marquee
-            pauseOnHover={true}
-            gradient={true}
-            gradientColor="black"
-            gradientWidth={100}
-            className="flex flex-nowrap shadow-sm shadow-light/50 rounded-xl overflow-hidden"
-          >
-            {/* Cards */}
+        <div className="relative max-w-7xl flex flex-col gap-10 md:flex-row md:gap-0">
+          {/* Project Cards */}
+          <div ref={contentWrapperRef} className="flex flex-col gap-20 w-full md:w-1/2">
             {projects.map(({ imgURL, link, title, duration, detail, techStack }, i) => (
               <ProjectCard
                 key={`project-${i}`}
@@ -59,20 +106,68 @@ const Projects = () => {
                 duration={duration}
                 detail={detail}
                 techStack={techStack}
+                setActiveProject={setActiveProject}
               />
             ))}
-          </Marquee>
+          </div>
+          {/* Image Container */}
+          <a ref={imageRef} href={activeProject.link} target="_blank" className="hidden md:flex justify-center items-center w-1/2 h-80">
+            <div className="size-full mx-5 lg:mx-10 rounded-2xl overflow-hidden border-[1px] border-secondary scale-90 rotate-3 shadow-lg shadow-light/30 hover:scale-100 hover:rotate-0 hover:shadow-primary duration-500">
+              <img src={activeProject.imgURL} alt="active_img" className="size-full object-cover" />
+            </div>
+          </a>
         </div>
       </div>
 
       {/* Tech stack section */}
-      <div className="py-28 flex flex-col items-center ">
+      <div className="py-28 flex flex-col items-center gap-20 ">
         <ProjectTitle title={"MY TECH STACK"} />
-        {/* Icons Warpper*/}
-        <div className="max-w-4xl mt-10 flex flex-wrap justify-center gap-2 lg:scale-110">
-          {techStacks.map((techStack, i) => (
+        {/* Icons wrapper for mobile*/}
+        <div className="md:hidden max-w-4xl flex flex-wrap justify-center gap-2 lg:scale-110">
+          {[...techStacks.development, ...techStacks.tools].map((techStack, i) => (
             <TechBox key={`techBox-${i}`} icon={techStack.icon} title={techStack.title} />
           ))}
+        </div>
+
+        {/* Marquee wrapper for tablet*/}
+        <div className="hidden w-full md:flex flex-col gap-20">
+          {/* Go left marquee */}
+          <div ref={leftMarqueeRef} className="w-full rotate-3 overflow-hidden">
+            <Marquee
+              direction="left"
+              pauseOnHover={true}
+              autoFill={true}
+              gradient={true}
+              gradientColor="#222831"
+              gradientWidth={100}
+              speed={50}
+            >
+              <div className="flex py-3">
+                {techStacks.development.map((techStack, i) => (
+                  <TechBox key={`techBox-dev-${i}`} icon={techStack.icon} title={techStack.title} />
+                ))}
+              </div>
+            </Marquee>
+          </div>
+
+          {/* Go right marquee */}
+          <div ref={rightMarqueeRef} className="w-full -rotate-3 overflow-hidden">
+            <Marquee
+              direction="right"
+              pauseOnHover={true}
+              autoFill={true}
+              gradient={true}
+              gradientColor="#222831"
+              gradientWidth={100}
+              speed={50}
+            >
+              <div className="flex py-3">
+                {techStacks.tools.map((techStack, i) => (
+                  <TechBox key={`techBox-tools-${i}`} icon={techStack.icon} title={techStack.title} />
+                ))}
+              </div>
+            </Marquee>
+          </div>
         </div>
       </div>
     </PageContainer>

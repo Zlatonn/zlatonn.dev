@@ -17,12 +17,13 @@ const ProjectTitle = ({ title }: Props) => {
     gsap.from(titleRef.current, {
       scrollTrigger: {
         trigger: titleRef.current,
-        start: "top 95%",
-        end: "+=300px'",
+        start: "-50px 95%",
+        end: () => "+=100px",
         scrub: true,
       },
       opacity: 0,
       y: 50,
+      ease: "power2.inOut",
     });
   });
 
