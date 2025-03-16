@@ -1,4 +1,4 @@
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -69,6 +69,17 @@ const Navbar = ({ onNavigate }: Props) => {
       x: "100%",
     });
   });
+
+  // Force close side bar when screen size over 768
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768;
+      if (!mobile) closeSidebar();
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [closeSidebar]);
 
   return (
     <>
