@@ -7,7 +7,7 @@ import { paragraphs } from "@/contents/AboutContent";
 const About = () => {
   return (
     <PageContainer className="bg-light">
-      <div className="max-w-6xl mx-auto flex flex-col pt-24 md:pt-36">
+      <div className="max-w-6xl mx-auto flex flex-col py-20 md:py-28">
         <div className="flex justify-center items-center gap-5 md:gap-10">
           <div className="size-24 md:size-32">
             <EyeBlink />
