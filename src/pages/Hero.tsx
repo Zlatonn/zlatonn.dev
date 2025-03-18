@@ -9,6 +9,8 @@ import EyeTracking from "@/components/hero/EyeTracking";
 import { preText } from "@/contents/HeroContent";
 import { heroTitle } from "@/contents/HeroContent";
 
+import resumeFile from "../assets/Pongsakorn Lengklang.pdf";
+
 import { onNavigateProps as Props } from "@/types/common";
 
 const Hero = ({ onNavigate }: Props) => {
@@ -21,7 +23,7 @@ const Hero = ({ onNavigate }: Props) => {
 
           <HeroTitle titles={heroTitle} />
 
-          <HeroButton title="GET MY CV" />
+          <HeroButton title="GET MY CV" link={resumeFile} />
         </div>
 
         <div className="relative w-40 md:w-52 ">

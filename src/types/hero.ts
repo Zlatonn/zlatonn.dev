@@ -9,4 +9,5 @@ export interface PreTextProps {
 
 export interface HeroButtonProps {
   title: string;
+  link?: string;
 }
