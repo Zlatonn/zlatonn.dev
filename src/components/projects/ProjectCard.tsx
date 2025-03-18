@@ -65,10 +65,10 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
   return (
     <div
       ref={cardRef}
-      className="mx-10 lg:mx-5 p-5 flex flex-col gap-10 shadow-sm shadow-light rounded-3xl bg-gradient-to-b from-secondary to-primary md:flex-row md:gap-20 md:shadow-none md:rounded-none md:bg-none "
+      className="mx-10 lg:mx-5 p-5 flex flex-col gap-5 shadow-sm shadow-light rounded-3xl bg-gradient-to-b from-secondary to-primary md:flex-row md:gap-20 md:shadow-none md:rounded-none md:bg-none "
     >
       {/* Content */}
-      <div ref={contentRef} className="text-light flex flex-col gap-5">
+      <div ref={contentRef} className="text-light flex flex-col gap-3 md:gap-5">
         {/* Link to project */}
         <a href={link} target="_blank" className="md:text-lg lg:text-2xl flex gap-2 items-center cursor-pointer md:text-accent group/link">
           <h2 className="font-semibold group-hover/link:underline">{`· ${title}`}</h2>
@@ -92,7 +92,7 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
         target="_blank"
         className="block md:hidden self-center w-full sm:w-2/3 rounded-2xl overflow-hidden scale-90 rotate-3 hover:shadow-md hover:shadow-secondary hover:scale-100 hover:rotate-0 duration-500"
       >
-        <img src={imgURL} alt={`${title}-img`} className="object-cover w-full h-64" />
+        <img src={imgURL} alt={`${title}-img`} className="object-cover w-full h-60" />
       </a>
     </div>
   );

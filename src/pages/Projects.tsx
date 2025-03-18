@@ -96,7 +96,7 @@ const Projects = () => {
         <ProjectTitle title={"PROJECTS"} />
         <div className="relative max-w-7xl flex flex-col gap-10 md:flex-row md:gap-0">
           {/* Project Cards */}
-          <div ref={contentWrapperRef} className="flex flex-col gap-20 w-full md:w-1/2">
+          <div ref={contentWrapperRef} className="flex flex-col gap-10 md:gap-20 w-full md:w-1/2">
             {projects.map(({ imgURL, link, title, duration, detail, techStack }, i) => (
               <ProjectCard
                 key={`project-${i}`}
@@ -130,7 +130,7 @@ const Projects = () => {
         </div>
 
         {/* Marquee wrapper for tablet*/}
-        <div className="hidden w-full md:flex flex-col gap-20">
+        <div className="hidden w-full md:flex flex-col gap-20 xl:gap-32">
           {/* Go left marquee */}
           <div ref={leftMarqueeRef} className="w-full rotate-3 overflow-hidden">
             <Marquee
