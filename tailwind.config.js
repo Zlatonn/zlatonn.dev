@@ -13,8 +13,8 @@ export default {
       fontFamily: {
         sans: ["Poppins", "sans-serif"],
         code: ['"Source Code Pro"', "monospace"],
-        display: ["Silkscreen", "cursive"],
-        icon: ['"Rammetto One"', "cursive"],
+        display: ["Silkscreen", "sans-serif"],
+        icon: ['"Rammetto One"', "sans-serif"],
       },
     },
   },
