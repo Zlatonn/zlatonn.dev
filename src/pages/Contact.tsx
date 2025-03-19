@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import PageContainer from "@/components/PageContainer";
 import InputField from "@/components/contact/InputField";
@@ -48,13 +49,13 @@ const Contact = () => {
 
       // Handle success response
       if (response.status === 200) {
-        alert("✅ Successfully submitted! Your message has been sent.");
+        toast.success("Message sent!");
         reset();
         setLoading(false);
       }
     } catch (error) {
+      toast.error("Submission failed!");
       console.error("Error sending email:", error);
-      alert("❌ Something went wrong. Please try again.");
       setLoading(false);
     }
   };

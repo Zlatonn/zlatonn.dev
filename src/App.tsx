@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { ToastContainer, Bounce } from "react-toastify";
 
 import Navbar from "./components/navbar/Navbar";
 import Hero from "./pages/Hero";
@@ -17,21 +18,38 @@ function App() {
   };
 
   return (
-    <main className="relative min-h-screen w-screen">
-      <Navbar onNavigate={scrollToSection} />
-      <section id="home">
-        <Hero onNavigate={scrollToSection} />
-      </section>
-      <section id="about">
-        <About />
-      </section>
-      <section id="projects">
-        <Projects />
-      </section>
-      <section id="contact">
-        <Contact />
-      </section>
-    </main>
+    <>
+      <main className="relative min-h-screen w-screen">
+        <Navbar onNavigate={scrollToSection} />
+        <section id="home">
+          <Hero onNavigate={scrollToSection} />
+        </section>
+        <section id="about">
+          <About />
+        </section>
+        <section id="projects">
+          <Projects />
+        </section>
+        <section id="contact">
+          <Contact />
+        </section>
+      </main>
+
+      {/* Toast notification container */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
+    </>
   );
 }
 
