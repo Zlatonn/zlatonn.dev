@@ -21,21 +21,19 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
-    // Create fade up & scale animation for mobile view (max-width: 767px)
+    // Create slide left animation for mobile view (max-width: 767px)
     mm.add("(max-width: 767px)", () => {
       gsap.from(cardRef.current, {
         scrollTrigger: {
           trigger: cardRef.current,
-          start: "-100px bottom",
+          start: "-100px center",
           end: () => "+=" + (cardRef.current ? cardRef.current.offsetHeight : 0),
           toggleActions: "restart none none reverse",
         },
-        scale: 0.5,
-        transformOrigin: "center center",
-        y: 100,
+        x: -200,
         opacity: 0,
-        duration: 0.5,
-        ease: "power2.inOut",
+        duration: 1,
+        ease: "back.inOut",
       });
     });
 
@@ -53,8 +51,8 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
         },
         x: -200,
         opacity: 0,
-        duration: 0.5,
-        ease: "power2.inOut",
+        duration: 1,
+        ease: "back.inOut",
       });
     });
 
@@ -92,7 +90,7 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
         target="_blank"
         className="block md:hidden self-center w-full sm:w-2/3 rounded-2xl overflow-hidden scale-90 rotate-3 hover:shadow-md hover:shadow-secondary hover:scale-100 hover:rotate-0 duration-500"
       >
-        <img src={imgURL} alt={`${title}-img`} className="object-cover w-full h-60" />
+        <img src={imgURL} alt={`${title}-img`} className="object-cover w-full h-48" />
       </a>
     </div>
   );

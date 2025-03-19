@@ -25,7 +25,7 @@ const ProjectTitle = ({ title }: Props) => {
       y: 100,
       rotateX: 90,
       duration: 1,
-      ease: "bounce.out",
+      ease: "back.out",
     });
   });
 
