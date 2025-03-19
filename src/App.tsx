@@ -1,4 +1,6 @@
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ToastContainer, Bounce } from "react-toastify";
 
@@ -9,13 +11,28 @@ import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 
 // Register GSAP Plugin
-gsap.registerPlugin(ScrollToPlugin);
+gsap.registerPlugin(useGSAP, ScrollToPlugin, ScrollTrigger);
 
 function App() {
   // Function to handle smooth scrolling to specific sections
   const scrollToSection = (sectionId: string) => {
-    gsap.to(window, { duration: 1, scrollTo: `#${sectionId}`, ease: "power2.inOut" });
+    if (sectionId === "home") {
+      gsap.to(window, { duration: 1, scrollTo: { y: 0 }, ease: "power2.inOut" });
+    } else {
+      gsap.to(window, { duration: 1, scrollTo: `#${sectionId}`, ease: "power2.inOut" });
+    }
   };
+
+  // Create parallax home animation
+  useGSAP(() => {
+    ScrollTrigger.create({
+      trigger: "#home",
+      start: "top top",
+      pin: true,
+      pinSpacing: false,
+      scrub: 1,
+    });
+  });
 
   return (
     <>
