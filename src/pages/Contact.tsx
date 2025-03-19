@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import axios from "axios";
 
 import PageContainer from "@/components/PageContainer";
 import InputField from "@/components/contact/InputField";
@@ -14,6 +16,7 @@ const Contact = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<Iform>({
     defaultValues: {
       name: "",
@@ -22,8 +25,39 @@ const Contact = () => {
     },
   });
 
+  // Create loading state
+  const [loading, setLoading] = useState(false);
+
   // Function to handle form submission
-  const onSubmit: SubmitHandler<Iform> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Iform> = async (data) => {
+    const serviceID = "service_udbln6i";
+    const templateID = "template_cdlm47w";
+    const publicKey = "qJB7YggvIAQVgOaiC";
+
+    const templateData = {
+      service_id: serviceID,
+      template_id: templateID,
+      user_id: publicKey,
+      template_params: data,
+    };
+
+    try {
+      setLoading(true);
+      // Sending the form data to EmailJS API
+      const response = await axios.post("https://api.emailjs.com/api/v1.0/email/send", templateData);
+
+      // Handle success response
+      if (response.status === 200) {
+        alert("✅ Successfully submitted! Your message has been sent.");
+        reset();
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("❌ Something went wrong. Please try again.");
+      setLoading(false);
+    }
+  };
 
   return (
     <PageContainer className="relative min-h-screen w-screen bg-gradient-to-b from-secondary to-primary">
@@ -62,11 +96,12 @@ const Contact = () => {
             {/* Submit Button */}
             <Button
               type="submit"
+              disabled={loading}
               className="w-full mt-5 bg-accent text-secondary hover:bg-accent 
-                         hover:-translate-y-1 hover:shadow-md hover:shadow-secondary 
+                         hover:-translate-y-0.5 hover:shadow-sm hover:shadow-accent 
                          transition-all duration-500"
             >
-              SUBMIT
+              {loading ? "SUBMITING..." : "SUBMIT"}
             </Button>
           </form>
         </div>
