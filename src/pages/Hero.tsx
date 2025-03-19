@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -14,6 +15,9 @@ import { heroTitle } from "@/contents/HeroContent";
 
 import resumeFile from "../assets/Pongsakorn Lengklang.pdf";
 
+// Register GSAP Plugin
+gsap.registerPlugin(useGSAP);
+
 import { onNavigateProps as Props } from "@/types/common";
 
 const Hero = ({ onNavigate }: Props) => {
@@ -28,9 +32,26 @@ const Hero = ({ onNavigate }: Props) => {
     });
   });
 
+  // Refer hero content
+  const heroContentRef = useRef<HTMLDivElement>(null);
+
+  // Create fade out animation
+  useGSAP(() => {
+    gsap.to(heroContentRef.current, {
+      scrollTrigger: {
+        trigger: heroContentRef.current,
+        start: "top top",
+        scrub: 1,
+      },
+      scale: 0.8,
+      opacity: 0,
+      yPercent: -25,
+    });
+  });
+
   return (
     <PageContainer className="bg-gradient-to-b from-secondary to-primary">
-      <div className="min-h-screen flex flex-col justify-between items-center">
+      <div ref={heroContentRef} className="min-h-screen flex flex-col justify-between items-center">
         {/* Title */}
         <div className="max-w-5xl pt-36 flex flex-col gap-5 text-center">
           <PreText text={preText} className="fadeup text-accent" />
