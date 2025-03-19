@@ -43,14 +43,13 @@ const Projects = () => {
 
     // Apply the image pin animation only on larger screens (min-width: 1024px)
     mm.add("(min-width:768px)", () => {
-      gsap.from(imageRef.current, {
-        scrollTrigger: {
-          trigger: imageRef.current,
-          pin: true,
-          start: "center center",
-          scrub: true,
-          end: () => getScrollEndPoint(),
-        },
+      ScrollTrigger.create({
+        trigger: imageRef.current,
+        start: "center center",
+        pin: true,
+        pinSpacing: false,
+        scrub: 1,
+        end: () => getScrollEndPoint(),
       });
     });
 
