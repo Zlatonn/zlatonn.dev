@@ -4,7 +4,7 @@ export const projects = [
   {
     imgURL: homePic,
     link: "https://github.com/Zlatonn/zlatonn.dev",
-    title: "Zlatonn's Space - Portfolio Website",
+    title: "Zlatonn's Space",
     duration: "Feb 2025 ~ Mar 2025",
     detail:
       "A personal portfolio website showcasing my projects, skills, and experience in frontend development. It highlights my expertise in React, Tailwind CSS, and modern web development practices.",
