@@ -1,15 +1,11 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import TechStack from "./TechStack";
-
-// Register gsap plugin
-gsap.registerPlugin(ScrollTrigger);
 
 import { ProjectCardProps as Props } from "@/types/projects";
 
@@ -32,7 +28,7 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
         },
         x: -200,
         opacity: 0,
-        duration: 1,
+        duration: 0.5,
         ease: "back.inOut",
       });
     });

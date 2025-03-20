@@ -1,17 +1,13 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import StackIcon from "tech-stack-icons";
-
-// Register gsap plugin
-gsap.registerPlugin(ScrollTrigger);
 
 import { TechBoxProps as Props } from "@/types/projects";
 
 const TechBox = ({ icon, title }: Props) => {
   // Create a reference for the tech box container
-  const stackBoxRef = useRef(null);
+  const stackBoxRef = useRef<HTMLDivElement>(null);
 
   // Create tech box animation
   useGSAP(() => {

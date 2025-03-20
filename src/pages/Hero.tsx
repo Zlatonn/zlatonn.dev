@@ -13,7 +13,7 @@ import EyeTracking from "@/components/hero/EyeTracking";
 import { preText } from "@/contents/HeroContent";
 import { heroTitle } from "@/contents/HeroContent";
 
-import resumeFile from "../assets/Pongsakorn Lengklang.pdf";
+import resumeFile from "../assets/Resume.pdf";
 
 const Hero = () => {
   // Create fade up animation on elements with class "fadeup"

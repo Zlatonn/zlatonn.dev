@@ -12,6 +12,12 @@ import { formField } from "@/contents/ContactContent";
 
 import { Iform } from "@/types/contact";
 
+// EmailJS API configuration
+const SERVICE_ID = "service_udbln6i";
+const TEMPLATE_ID = "template_cdlm47w";
+const PUBLIC_KEY = "qJB7YggvIAQVgOaiC";
+const EMAIL_API_URL = "https://api.emailjs.com/api/v1.0/email/send";
+
 const Contact = () => {
   const {
     register,
@@ -31,31 +37,27 @@ const Contact = () => {
 
   // Function to handle form submission
   const onSubmit: SubmitHandler<Iform> = async (data) => {
-    const serviceID = "service_udbln6i";
-    const templateID = "template_cdlm47w";
-    const publicKey = "qJB7YggvIAQVgOaiC";
-
     const templateData = {
-      service_id: serviceID,
-      template_id: templateID,
-      user_id: publicKey,
+      service_id: SERVICE_ID,
+      template_id: TEMPLATE_ID,
+      user_id: PUBLIC_KEY,
       template_params: data,
     };
 
     try {
       setLoading(true);
       // Sending the form data to EmailJS API
-      const response = await axios.post("https://api.emailjs.com/api/v1.0/email/send", templateData);
+      const response = await axios.post(EMAIL_API_URL, templateData);
 
       // Handle success response
       if (response.status === 200) {
         toast.success("Message sent!");
         reset();
-        setLoading(false);
       }
     } catch (error) {
       toast.error("Submission failed!");
       console.error("Error sending email:", error);
+    } finally {
       setLoading(false);
     }
   };
@@ -98,8 +100,9 @@ const Contact = () => {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full mt-5 bg-accent text-secondary hover:bg-accent 
-                         hover:-translate-y-0.5 hover:shadow-sm hover:shadow-accent 
+              className="w-full rounded-md mt-5 text-secondary bg-accent
+                         hover:bg-gradient-to-r hover:from-light hover:to-accent
+                         hover:shadow-sm hover:shadow-secondary 
                          transition-all duration-500"
             >
               {loading ? "SUBMITING..." : "SUBMIT"}

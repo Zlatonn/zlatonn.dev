@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from "react";
-import { gsap } from "gsap";
+import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Marquee from "react-fast-marquee";
@@ -10,9 +10,6 @@ import ProjectCard from "@/components/projects/ProjectCard";
 import TechBox from "@/components/projects/TechBox";
 
 import { projects, techStacks } from "@/contents/ProjectContent";
-
-// Register the ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
   // State to track the active project image and the scroll progress

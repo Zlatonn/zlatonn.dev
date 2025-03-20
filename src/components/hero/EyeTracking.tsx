@@ -1,10 +1,15 @@
 import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 import scleraPic from "../../assets/Sclera.png";
 import eyeBallPic from "../../assets/EyeBall.png";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 
 const EyeTracking = () => {
+  // Refer sclera & eyeBall
+  const scleraRef = useRef<HTMLImageElement>(null);
+  const eyeBallRef = useRef<HTMLImageElement>(null);
+
   useGSAP(() => {
     const handleMouseMove = (e: MouseEvent) => {
       // Get the bounding box of the sclera (white part of the eye)
@@ -42,8 +47,6 @@ const EyeTracking = () => {
     // Cleanup function to remove event listener on unmount
     return () => document.removeEventListener("mousemove", handleMouseMove);
   });
-  const scleraRef = useRef<HTMLImageElement>(null);
-  const eyeBallRef = useRef<HTMLImageElement>(null);
 
   return (
     <div className="relative size-full">

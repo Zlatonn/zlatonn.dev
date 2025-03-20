@@ -1,11 +1,6 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { TextPlugin } from "gsap/TextPlugin";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// Register gsap plugin
-gsap.registerPlugin(useGSAP, TextPlugin, ScrollTrigger);
 
 import { BoxContentProps as Props } from "@/types/about";
 

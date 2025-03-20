@@ -12,8 +12,22 @@ import SidebarItem from "./SidebarItem";
 import { logoTitle, navList } from "@/contents/NavbarContent";
 
 const Navbar = () => {
-  // Refer for nav hover effect
+  // Refer for nav hover effect & sidebar
   const navHoverRef = useRef<HTMLDivElement>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+
+  // Set initialize GSAP animations for navHover and sidebar
+  useGSAP(() => {
+    // Set hide navHover
+    gsap.set(navHoverRef.current, {
+      opacity: 0,
+    });
+
+    // Set off-screen sidebar
+    gsap.set(sidebarRef.current, {
+      x: "100%",
+    });
+  });
 
   // Handle hover effect for navbar items
   const handleHover = useCallback((e: React.MouseEvent<HTMLLIElement>) => {
@@ -35,9 +49,6 @@ const Navbar = () => {
     });
   }, []);
 
-  // Refer sidebar
-  const sidebarRef = useRef<HTMLDivElement>(null);
-
   // Open sidebar and prevent body scroll
   const openSidebar = useCallback(() => {
     gsap.to(sidebarRef.current, {
@@ -55,19 +66,6 @@ const Navbar = () => {
     // Enable scroll when sidebar is closed
     document.body.style.overflow = "auto";
   }, []);
-
-  // Initialize GSAP animations for navHover and sidebar
-  useGSAP(() => {
-    // Set hide navHover
-    gsap.set(navHoverRef.current, {
-      opacity: 0,
-    });
-
-    // Set off-screen sidebar
-    gsap.set(sidebarRef.current, {
-      x: "100%",
-    });
-  });
 
   // Force close side bar when screen size over 768
   useEffect(() => {
