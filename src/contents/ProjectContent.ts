@@ -1,4 +1,15 @@
+import homePic from "../assets/demo_home.png";
+
 export const projects = [
+  {
+    imgURL: homePic,
+    link: "https://github.com/Zlatonn/zlatonn.dev",
+    title: "Zlatonn's Space - Portfolio Website",
+    duration: "Feb 2025 ~ Mar 2025",
+    detail:
+      "A personal portfolio website showcasing my projects, skills, and experience in frontend development. It highlights my expertise in React, Tailwind CSS, and modern web development practices.",
+    techStack: [["React", "Tailwind", "GSAP"]],
+  },
   {
     imgURL: "https://github.com/Zlatonn/warranty-expiry-checker/raw/master/frontend/src/assets/home%20page.png",
     link: "https://github.com/Zlatonn/warranty-expiry-checker",
