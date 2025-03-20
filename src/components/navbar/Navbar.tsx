@@ -5,14 +5,13 @@ import { useGSAP } from "@gsap/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-import { logoTitle, navList } from "@/contents/NavbarContent";
 import Logo from "./Logo";
 import NavItem from "./NavItem";
 import SidebarItem from "./SidebarItem";
 
-import { onNavigateProps as Props } from "@/types/common";
+import { logoTitle, navList } from "@/contents/NavbarContent";
 
-const Navbar = ({ onNavigate }: Props) => {
+const Navbar = () => {
   // Refer for nav hover effect
   const navHoverRef = useRef<HTMLDivElement>(null);
 
@@ -94,7 +93,7 @@ const Navbar = ({ onNavigate }: Props) => {
         {/* Desktop navigation items */}
         <ul className="relative hidden md:flex justify-between items-center p-1">
           {navList.map((nav, i) => (
-            <NavItem key={`nav-${i}`} content={nav} handleHover={handleHover} handleLeave={handleLeave} onNavigate={onNavigate} />
+            <NavItem key={`nav-${i}`} content={nav} handleHover={handleHover} handleLeave={handleLeave} />
           ))}
           {/* Hover effect for desktop navbar */}
           <div ref={navHoverRef} className={`absolute top-1 bg-primary rounded-full h-5/6 w-1/${navList.length}`}></div>
@@ -115,7 +114,7 @@ const Navbar = ({ onNavigate }: Props) => {
         </div>
         <ul className="mt-20">
           {navList.map((nav, i) => (
-            <SidebarItem key={`sidebar-${i}`} content={nav} closeSidebar={closeSidebar} onNavigate={onNavigate} />
+            <SidebarItem key={`sidebar-${i}`} content={nav} closeSidebar={closeSidebar} />
           ))}
         </ul>
       </div>

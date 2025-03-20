@@ -46,7 +46,7 @@ const EyeTracking = () => {
   const eyeBallRef = useRef<HTMLImageElement>(null);
 
   return (
-    <div className="relative w-full">
+    <div className="relative size-full">
       <img ref={scleraRef} src={scleraPic} alt="sclera" className="absolute w-1/2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
       <img ref={eyeBallRef} src={eyeBallPic} alt="eye_ball" className="absolute w-1/4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
     </div>

@@ -15,12 +15,7 @@ import { heroTitle } from "@/contents/HeroContent";
 
 import resumeFile from "../assets/Pongsakorn Lengklang.pdf";
 
-// Register GSAP Plugin
-gsap.registerPlugin(useGSAP);
-
-import { onNavigateProps as Props } from "@/types/common";
-
-const Hero = ({ onNavigate }: Props) => {
+const Hero = () => {
   // Create fade up animation on elements with class "fadeup"
   useGSAP(() => {
     gsap.from(".fadeup", {
@@ -61,15 +56,15 @@ const Hero = ({ onNavigate }: Props) => {
           <HeroButton title="GET MY CV" link={resumeFile} className="fadeup" />
         </div>
 
-        <div className="fadeup relative w-40 md:w-52">
+        <div className="fadeup relative size-40 md:size-52">
           <RotateText />
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0">
             <EyeTracking />
           </div>
         </div>
 
         {/* Scroll down Indicator*/}
-        <ScrollDownIndicator onNavigate={onNavigate} />
+        <ScrollDownIndicator />
       </div>
     </PageContainer>
   );

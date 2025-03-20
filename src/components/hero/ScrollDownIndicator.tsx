@@ -2,12 +2,15 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
+import useScrollToSection from "@/hooks/useScrollToSection";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
-import { onNavigateProps as Props } from "@/types/common";
+const ScrollDownIndicator = () => {
+  // Custom hook to handle scrolling to specific sections
+  const scrollToSection = useScrollToSection();
 
-const ScrollDownIndicator = ({ onNavigate }: Props) => {
   // Refer to the down arrow icon for animation
   const downArrowRef = useRef<SVGSVGElement>(null);
 
@@ -30,7 +33,7 @@ const ScrollDownIndicator = ({ onNavigate }: Props) => {
   });
 
   return (
-    <p onClick={() => onNavigate("about")} className="py-10 text-accent md:text-xl cursor-pointer">
+    <p onClick={() => scrollToSection("about")} className="py-10 text-accent md:text-xl cursor-pointer">
       scroll down
       <span className="pl-3">
         <FontAwesomeIcon ref={downArrowRef} icon={faArrowDown} />

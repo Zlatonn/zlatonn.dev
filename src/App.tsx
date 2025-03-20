@@ -2,6 +2,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { TextPlugin } from "gsap/TextPlugin";
 import { ToastContainer, Bounce } from "react-toastify";
 
 import Navbar from "./components/navbar/Navbar";
@@ -10,19 +11,10 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 
-// Register GSAP Plugin
-gsap.registerPlugin(useGSAP, ScrollToPlugin, ScrollTrigger);
+// Global register GSAP Plugin
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, TextPlugin);
 
 function App() {
-  // Function to handle smooth scrolling to specific sections
-  const scrollToSection = (sectionId: string) => {
-    if (sectionId === "home") {
-      gsap.to(window, { duration: 1, scrollTo: { y: 0 }, ease: "power2.inOut" });
-    } else {
-      gsap.to(window, { duration: 1, scrollTo: `#${sectionId}`, ease: "power2.inOut" });
-    }
-  };
-
   // Create parallax home animation
   useGSAP(() => {
     ScrollTrigger.create({
@@ -37,9 +29,9 @@ function App() {
   return (
     <>
       <main className="relative min-h-screen w-screen">
-        <Navbar onNavigate={scrollToSection} />
+        <Navbar />
         <section id="home">
-          <Hero onNavigate={scrollToSection} />
+          <Hero />
         </section>
         <section id="about">
           <About />
