@@ -2,7 +2,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-import rotateTextPic from "../../assets/RotatingText.png";
+import rotateTextPic from "../../assets/RotatingText.webp";
 
 const RotateText = () => {
   // Creating a reference to access rotate element.

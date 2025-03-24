@@ -1,4 +1,4 @@
-import homePic from "../assets/demo_home.png";
+import homePic from "../assets/demo_home.webp";
 
 export const projects = [
   {
