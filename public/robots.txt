@@ -1,0 +1,3 @@
+User-Agent: *
+Allow: /
+Sitemap: https://zlatonn-space.pages.dev/sitemap.xml
