@@ -2,8 +2,8 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-import scleraPic from "../../assets/Sclera.webp";
-import eyeBallPic from "../../assets/EyeBall.webp";
+import scleraPic from "/images/Sclera.webp";
+import eyeBallPic from "/images/EyeBall.webp";
 
 const EyeBlink = () => {
   // Reference to the eye image for animations
