@@ -3,6 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Import Icon -->
+    <link rel="icon" href="/Zlatonn.ico" />
+    <title>Zlatonn</title>
+
     <!-- Pre-load fonts -->
     <link
       rel="preload"
@@ -25,9 +30,11 @@
       type="font/woff2"
       crossorigin="anonymous"
     />
-    <!-- Import Icon -->
-    <link rel="icon" href="/Zlatonn.ico" />
-    <title>Zlatonn</title>
+
+    <!-- Preload the LCP image with a high fetchpriority -->
+    <link rel="preload" fetchpriority="high" as="image" href="/src/assets/RotatingText.webp" type="image/webp" />
+    <link rel="preload" fetchpriority="high" as="image" href="/src/assets/Sclera.webp" type="image/webp" />
+    <link rel="preload" fetchpriority="high" as="image" href="/src/assets/EyeBall.webp" type="image/webp" />
   </head>
   <body>
     <div id="root"></div>
