@@ -51,7 +51,7 @@ const BoxContent = ({ paragraphs }: Props) => {
 
   return (
     <div className="relative p-5 m-8 sm:mx-16 md:mx-24 md:p-8 lg:my-12 lg:mx-28 lg:p-10">
-      <div className="relative text-light font-code font-semibold text-left text-sm sm:text-base md:text-xl 2xl:text-2xl z-[1]">
+      <div className="relative text-light font-code font-semibold text-left text-sm sm:text-base md:text-xl z-[1]">
         {/* Hidden text */}
         <div className="opacity-0">
           {paragraphs.map((paragraph, i) => (
