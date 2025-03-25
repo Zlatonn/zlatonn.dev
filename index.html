@@ -3,8 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Import Icon -->
-    <link rel="icon" href="/public/zlatonn.jpeg" />
+
+    <!-- Icon -->
+    <link rel="icon" href="/Zlatonn.ico" />
+
+    <!-- Pre-load fonts -->
+    <link rel="preload" href="/assets/silkscreen-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="/assets/rammetto-one-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="/assets/poppins-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+
+    <!-- Preload the LCP image with a high fetchpriority -->
+    <link rel="preload" fetchpriority="high" as="image" href="/images/RotatingText.webp" type="image/webp" />
+    <link rel="preload" fetchpriority="high" as="image" href="/images/Sclera.webp" type="image/webp" />
+    <link rel="preload" fetchpriority="high" as="image" href="/images/EyeBall.webp" type="image/webp" />
+
+    <!-- Open Graph Tags -->
+    <meta name="description" content="Zlatonn's web development portfolio showcasing projects and skills." />
+    <meta name="keywords" content="web development, React, JavaScript, HTML, CSS, Tailwind, Node.js, Portfolio" />
+    <meta name="author" content="Zlatonn" />
+    <meta property="og:title" content="Zlatonn's Space" />
+    <meta property="og:description" content="Showcasing Zlatonn’s web development projects and skills." />
+    <meta property="og:image" content="/images/demo_home.webp" />
+    <meta property="og:url" content="https://zlatonn-space.pages.dev/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Web Title -->
     <title>Zlatonn</title>
   </head>
   <body>

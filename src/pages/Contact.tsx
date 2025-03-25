@@ -67,7 +67,7 @@ const Contact = () => {
       {/* Main container with gradient background */}
       <div className="py-28 flex flex-col items-center gap-20">
         {/* Page title */}
-        <h1 className="font-display text-3xl md:text-4xl xl:text-5xl font-regular text-light">CONTACT ME</h1>
+        <h1 className="font-display text-3xl md:text-4xl xl:text-5xl font-normal text-light">CONTACT ME</h1>
 
         <div className="grid grid-cols-1 gap-10 xl:grid-cols-2 xl:gap-20">
           {/* Left section: Introduction and message */}

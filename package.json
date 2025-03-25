@@ -11,6 +11,10 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@fontsource-variable/source-code-pro": "^5.2.5",
+    "@fontsource/poppins": "^5.2.5",
+    "@fontsource/rammetto-one": "^5.2.5",
+    "@fontsource/silkscreen": "^5.2.5",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
