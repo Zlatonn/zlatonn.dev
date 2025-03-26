@@ -11,7 +11,7 @@ export const projects = [
     techStack: [["React", "Tailwind", "GSAP"]],
   },
   {
-    imgURL: "https://github.com/Zlatonn/warranty-expiry-checker/raw/master/frontend/src/assets/home%20page.png",
+    imgURL: "https://github.com/Zlatonn/warranty-expiry-checker/raw/master/frontend/src/assets/home%20page.webp",
     link: "https://github.com/Zlatonn/warranty-expiry-checker",
     title: "Warranty Expiry Checker",
     duration: "Jan 2025 ~ Feb 2025",
@@ -54,7 +54,7 @@ export const techStacks = {
     { icon: "redux", title: "Redux" },
     { icon: "vitejs", title: "Vite" },
     { icon: "tailwindcss", title: "TailwindCSS" },
-    { icon: "materialui", title: "Material UI" },
+    // { icon: "materialui", title: "Material UI" },
     { icon: "shadcnui", title: "Shadcn/UI" },
     { icon: "gsap", title: "GSAP" },
     { icon: "nodejs", title: "NodeJS" },
