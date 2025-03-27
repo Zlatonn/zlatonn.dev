@@ -18,6 +18,7 @@ export interface TechStackProps {
 }
 
 export interface TechBoxProps {
-  icon: string;
+  src: string;
+  alt: string;
   title: string;
 }

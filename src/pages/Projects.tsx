@@ -121,7 +121,7 @@ const Projects = () => {
         {/* Icons wrapper for mobile*/}
         <div className="md:hidden max-w-4xl flex flex-wrap justify-center gap-2 lg:scale-110">
           {[...techStacks.development, ...techStacks.tools].map((techStack, i) => (
-            <TechBox key={`techBox-${i}`} icon={techStack.icon} title={techStack.title} />
+            <TechBox key={`techBox-${i}`} src={techStack.src} alt={techStack.alt} title={techStack.title} />
           ))}
         </div>
 
@@ -140,7 +140,7 @@ const Projects = () => {
             >
               <div className="flex py-3">
                 {techStacks.development.map((techStack, i) => (
-                  <TechBox key={`techBox-dev-${i}`} icon={techStack.icon} title={techStack.title} />
+                  <TechBox key={`techBox-dev-${i}`} src={techStack.src} alt={techStack.alt} title={techStack.title} />
                 ))}
               </div>
             </Marquee>
@@ -159,7 +159,7 @@ const Projects = () => {
             >
               <div className="flex py-3">
                 {techStacks.tools.map((techStack, i) => (
-                  <TechBox key={`techBox-tools-${i}`} icon={techStack.icon} title={techStack.title} />
+                  <TechBox key={`techBox-tools-${i}`} src={techStack.src} alt={techStack.alt} title={techStack.title} />
                 ))}
               </div>
             </Marquee>
