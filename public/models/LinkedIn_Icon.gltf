@@ -24,7 +24,7 @@
         0.7071068286895752
       ],
       "scale": [
-        5,
+        5.000002861022949,
         5,
         5
       ],
@@ -111,29 +111,29 @@
     {
       "bufferView": 0,
       "componentType": 5126,
-      "count": 37203,
+      "count": 668,
       "max": [
-        0.0896073505282402,
-        0.0029999129474163055,
-        -0.0000746137520764023
+        0.08958389610052109,
+        0.0030007644090801477,
+        -0.00007578030636068434
       ],
       "min": [
-        0.00007460068445652723,
-        -3.3527612686157227e-8,
-        -0.08958838880062103
+        0.00008009863086044788,
+        -6.395005129888887e-7,
+        -0.08959425240755081
       ],
       "type": "VEC3"
     },
     {
       "bufferView": 1,
       "componentType": 5126,
-      "count": 37203,
+      "count": 668,
       "type": "VEC3"
     },
     {
       "bufferView": 2,
       "componentType": 5123,
-      "count": 173604,
+      "count": 864,
       "type": "SCALAR"
     },
     {
@@ -168,45 +168,45 @@
   "bufferViews": [
     {
       "buffer": 0,
-      "byteLength": 446436,
+      "byteLength": 8016,
       "byteOffset": 0,
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 446436,
-      "byteOffset": 446436,
+      "byteLength": 8016,
+      "byteOffset": 8016,
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 347208,
-      "byteOffset": 892872,
+      "byteLength": 1728,
+      "byteOffset": 16032,
       "target": 34963
     },
     {
       "buffer": 0,
       "byteLength": 7272,
-      "byteOffset": 1240080,
+      "byteOffset": 17760,
       "target": 34962
     },
     {
       "buffer": 0,
       "byteLength": 7272,
-      "byteOffset": 1247352,
+      "byteOffset": 25032,
       "target": 34962
     },
     {
       "buffer": 0,
       "byteLength": 3600,
-      "byteOffset": 1254624,
+      "byteOffset": 32304,
       "target": 34963
     }
   ],
   "buffers": [
     {
       "uri": "LinkedIn_Icon_data.bin",
-      "byteLength": 1258224
+      "byteLength": 35904
     }
   ]
 }

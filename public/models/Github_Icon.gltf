@@ -103,114 +103,114 @@
     {
       "bufferView": 0,
       "componentType": 5126,
-      "count": 5710,
+      "count": 362,
       "max": [
-        1,
-        0,
+        0.9992794394493103,
+        1.54224799597813e-10,
         1
       ],
       "min": [
-        -1,
-        -0.05000000074505806,
-        -1
+        -0.9995785355567932,
+        -0.05000000447034836,
+        -0.998971700668335
       ],
       "type": "VEC3"
     },
     {
       "bufferView": 1,
       "componentType": 5126,
-      "count": 5710,
+      "count": 362,
       "type": "VEC3"
     },
     {
       "bufferView": 2,
       "componentType": 5126,
-      "count": 5710,
+      "count": 362,
       "type": "VEC2"
     },
     {
       "bufferView": 3,
       "componentType": 5123,
-      "count": 11412,
+      "count": 570,
       "type": "SCALAR"
     },
     {
       "bufferView": 4,
       "componentType": 5126,
-      "count": 25683,
+      "count": 3881,
       "max": [
-        0.027552969753742218,
-        -2.0489096641540527e-8,
-        0.0270849522203207
+        0.027553346008062363,
+        -1.5086838445199646e-8,
+        0.027084926143288612
       ],
       "min": [
-        9.739596862345934e-8,
-        -0.0010833349078893661,
-        1.6763806343078613e-8
+        -2.371714629134658e-7,
+        -0.0010833380511030555,
+        1.862645149230957e-8
       ],
       "type": "VEC3"
     },
     {
       "bufferView": 5,
       "componentType": 5126,
-      "count": 25683,
+      "count": 3881,
       "type": "VEC3"
     },
     {
       "bufferView": 6,
       "componentType": 5123,
-      "count": 111144,
+      "count": 5556,
       "type": "SCALAR"
     }
   ],
   "bufferViews": [
     {
       "buffer": 0,
-      "byteLength": 68520,
+      "byteLength": 4344,
       "byteOffset": 0,
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 68520,
-      "byteOffset": 68520,
+      "byteLength": 4344,
+      "byteOffset": 4344,
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 45680,
-      "byteOffset": 137040,
+      "byteLength": 2896,
+      "byteOffset": 8688,
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 22824,
-      "byteOffset": 182720,
+      "byteLength": 1140,
+      "byteOffset": 11584,
       "target": 34963
     },
     {
       "buffer": 0,
-      "byteLength": 308196,
-      "byteOffset": 205544,
+      "byteLength": 46572,
+      "byteOffset": 12724,
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 308196,
-      "byteOffset": 513740,
+      "byteLength": 46572,
+      "byteOffset": 59296,
       "target": 34962
     },
     {
       "buffer": 0,
-      "byteLength": 222288,
-      "byteOffset": 821936,
+      "byteLength": 11112,
+      "byteOffset": 105868,
       "target": 34963
     }
   ],
   "buffers": [
     {
       "uri": "Github_Icon_data.bin",
-      "byteLength": 1044224
+      "byteLength": 116980
     }
   ]
 }
