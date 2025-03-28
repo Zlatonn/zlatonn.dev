@@ -16,3 +16,9 @@ export interface InputFieldProps {
   errors: FieldErrors<Iform>;
   pattern?: RegExp;
 }
+
+export interface Logo3DProps {
+  path: string;
+  pos: number[];
+  link: string;
+}
