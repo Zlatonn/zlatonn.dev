@@ -32,12 +32,12 @@ export const formField: Array<{
 export const logos = [
   {
     path: "/models/LinkedIn_Icon.gltf",
-    pos: [-3, 0, 0],
+    pos: [-2.5, 0, 0],
     link: "https://www.linkedin.com/in/pongsakorn-lengklang",
   },
   {
     path: "/models/Github_Icon.gltf",
-    pos: [3, 0, 0],
+    pos: [2.5, 0, 0],
     link: "https://github.com/Zlatonn",
   },
 ];
