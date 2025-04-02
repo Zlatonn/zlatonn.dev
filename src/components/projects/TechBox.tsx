@@ -36,7 +36,7 @@ const TechBox = ({ src, alt, title }: Props) => {
       ref={stackBoxRef}
       className="px-3 py-1 md:mx-3 md:px-5 md:py-3 flex items-center gap-1 md:gap-2 bg-gray-300/10 border-[1px] border-light/10 rounded-xl text-light hover:text-primary hover:rotate-3 hover:scale-90 transition-all duration-500 cursor-grabbing"
     >
-      <img src={src} alt={alt} className="w-5 md:w-10" />
+      <img src={src} alt={alt} className="h-auto w-5 md:w-10" loading="lazy" />
       <span>{title}</span>
     </div>
   );

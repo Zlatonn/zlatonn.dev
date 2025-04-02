@@ -1,36 +1,6 @@
-import homePic from "/images/demo_home.webp";
-
-import html5 from "/images/icons/html5.webp";
-import css3 from "/images/icons/css3.webp";
-import js from "/images/icons/js.webp";
-import typescript from "/images/icons/typescript.webp";
-import reactjs from "/images/icons/reactjs.webp";
-import reactrouter from "/images/icons/reactrouter.webp";
-import reactquery from "/images/icons/reactquery.webp";
-import redux from "/images/icons/redux.webp";
-import vitejs from "/images/icons/vitejs.webp";
-import tailwindcss from "/images/icons/tailwindcss.webp";
-import materialui from "/images/icons/materialui.webp";
-import shadcnui from "/images/icons/shadcnui.webp";
-import gsap from "/images/icons/gsap.webp";
-import nodejs from "/images/icons/nodejs.webp";
-import mysql from "/images/icons/mysql.webp";
-import threejs from "/images/icons/threejs.webp";
-import vscode from "/images/icons/vscode.webp";
-import git from "/images/icons/git.webp";
-import github from "/images/icons/github.webp";
-import copilotgithub from "/images/icons/copilotgithub.webp";
-import postman from "/images/icons/postman.webp";
-import docker from "/images/icons/docker.webp";
-import netlify2 from "/images/icons/netlify2.webp";
-import cloudflare from "/images/icons/cloudflare.webp";
-import railway from "/images/icons/railway.webp";
-import figma from "/images/icons/figma.webp";
-import openai from "/images/icons/openai.webp";
-
 export const projects = [
   {
-    imgURL: homePic,
+    imgURL: "/images/demo_home.webp",
     link: "https://github.com/Zlatonn/zlatonn.dev",
     title: "Zlatonn's Space",
     duration: "Feb 2025 ~ Mar 2025",
@@ -72,34 +42,34 @@ export const projects = [
 
 export const techStacks = {
   development: [
-    { src: html5, alt: "HTML5", title: "HTML" },
-    { src: css3, alt: "CSS3", title: "CSS" },
-    { src: js, alt: "JavaScript", title: "JavaScript" },
-    { src: typescript, alt: "TypeScript", title: "TypeScript" },
-    { src: reactjs, alt: "ReactJS", title: "ReactJS" },
-    { src: reactrouter, alt: "React Router", title: "React Router" },
-    { src: reactquery, alt: "React Query", title: "React Query" },
-    { src: redux, alt: "Redux", title: "Redux" },
-    { src: vitejs, alt: "Vite", title: "Vite" },
-    { src: tailwindcss, alt: "TailwindCSS", title: "TailwindCSS" },
-    { src: materialui, alt: "Material UI", title: "Material UI" },
-    { src: shadcnui, alt: "Shadcn/UI", title: "Shadcn/UI" },
-    { src: gsap, alt: "GSAP", title: "GSAP" },
-    { src: nodejs, alt: "NodeJS", title: "NodeJS" },
-    { src: mysql, alt: "MySQL", title: "MySQL" },
-    { src: threejs, alt: "Three.js", title: "Three.js" },
+    { src: "/images/icons/html5.webp", alt: "HTML5", title: "HTML" },
+    { src: "/images/icons/css3.webp", alt: "CSS3", title: "CSS" },
+    { src: "/images/icons/js.webp", alt: "JavaScript", title: "JavaScript" },
+    { src: "/images/icons/typescript.webp", alt: "TypeScript", title: "TypeScript" },
+    { src: "/images/icons/reactjs.webp", alt: "ReactJS", title: "ReactJS" },
+    { src: "/images/icons/reactrouter.webp", alt: "React Router", title: "React Router" },
+    { src: "/images/icons/reactquery.webp", alt: "React Query", title: "React Query" },
+    { src: "/images/icons/redux.webp", alt: "Redux", title: "Redux" },
+    { src: "/images/icons/vitejs.webp", alt: "Vite", title: "Vite" },
+    { src: "/images/icons/tailwindcss.webp", alt: "TailwindCSS", title: "TailwindCSS" },
+    { src: "/images/icons/materialui.webp", alt: "Material UI", title: "Material UI" },
+    { src: "/images/icons/shadcnui.webp", alt: "Shadcn/UI", title: "Shadcn/UI" },
+    { src: "/images/icons/gsap.webp", alt: "GSAP", title: "GSAP" },
+    { src: "/images/icons/nodejs.webp", alt: "NodeJS", title: "NodeJS" },
+    { src: "/images/icons/mysql.webp", alt: "MySQL", title: "MySQL" },
+    { src: "/images/icons/threejs.webp", alt: "Three.js", title: "Three.js" },
   ],
   tools: [
-    { src: vscode, alt: "VSCode", title: "VSCode" },
-    { src: git, alt: "Git", title: "Git" },
-    { src: github, alt: "GitHub", title: "GitHub" },
-    { src: copilotgithub, alt: "Copilot", title: "Copilot" },
-    { src: postman, alt: "Postman", title: "Postman" },
-    { src: docker, alt: "Docker", title: "Docker" },
-    { src: netlify2, alt: "Netlify", title: "Netlify" },
-    { src: cloudflare, alt: "Cloudflare", title: "Cloudflare" },
-    { src: railway, alt: "Railway", title: "Railway" },
-    { src: figma, alt: "Figma", title: "Figma" },
-    { src: openai, alt: "OpenAI", title: "OpenAI" },
+    { src: "/images/icons/vscode.webp", alt: "VSCode", title: "VSCode" },
+    { src: "/images/icons/git.webp", alt: "Git", title: "Git" },
+    { src: "/images/icons/github.webp", alt: "GitHub", title: "GitHub" },
+    { src: "/images/icons/copilotgithub.webp", alt: "Copilot", title: "Copilot" },
+    { src: "/images/icons/postman.webp", alt: "Postman", title: "Postman" },
+    { src: "/images/icons/docker.webp", alt: "Docker", title: "Docker" },
+    { src: "/images/icons/netlify2.webp", alt: "Netlify", title: "Netlify" },
+    { src: "/images/icons/cloudflare.webp", alt: "Cloudflare", title: "Cloudflare" },
+    { src: "/images/icons/railway.webp", alt: "Railway", title: "Railway" },
+    { src: "/images/icons/figma.webp", alt: "Figma", title: "Figma" },
+    { src: "/images/icons/openai.webp", alt: "OpenAI", title: "OpenAI" },
   ],
 };
