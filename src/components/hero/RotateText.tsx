@@ -18,7 +18,7 @@ const RotateText = () => {
     });
   });
 
-  return <img ref={rotateTextRef} src={rotateTextPic} alt="rotate_text" className="w-full" />;
+  return <img ref={rotateTextRef} src={rotateTextPic} alt="rotate_text" className="size-full" />;
 };
 
 export default RotateText;

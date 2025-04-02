@@ -23,7 +23,7 @@ const EyeBlink = () => {
         ref={eyeBallRef}
         src={eyeBallPic}
         alt="eye_ball"
-        className="absolute w-1/2 h-1/2 rounded-full shadow-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        className="absolute size-1/2 rounded-full shadow-md top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
       />
     </div>
   );

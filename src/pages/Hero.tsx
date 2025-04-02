@@ -56,7 +56,7 @@ const Hero = () => {
           <HeroButton title="GET MY CV" link={resumeFile} className="fadeup" />
         </div>
 
-        <div className="fadeup relative size-40 md:size-52">
+        <div className="relative size-40 md:size-52">
           <RotateText />
           <div className="absolute inset-0">
             <EyeTracking />
