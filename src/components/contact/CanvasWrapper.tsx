@@ -1,5 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { Environment, useGLTF } from "@react-three/drei";
+import LazyLoad from "react-lazyload";
 
 import Logo3D from "./Logo3D";
 
@@ -12,15 +13,17 @@ logos.forEach((logo) => {
 
 const CanvasWrapper = () => {
   return (
-    <div className="w-full h-80">
-      <Canvas>
-        <ambientLight intensity={5} />
-        <Environment preset="park" />
-        {logos.map(({ path, pos, link }, i) => (
-          <Logo3D key={`logo-${i}`} path={path} pos={pos} link={link} />
-        ))}
-      </Canvas>
-    </div>
+    <LazyLoad height={320} offset={500}>
+      <div className="w-full h-80">
+        <Canvas>
+          <ambientLight intensity={5} />
+          <Environment preset="park" />
+          {logos.map(({ path, pos, link }, i) => (
+            <Logo3D key={`logo-${i}`} path={path} pos={pos} link={link} />
+          ))}
+        </Canvas>
+      </div>
+    </LazyLoad>
   );
 };
 
