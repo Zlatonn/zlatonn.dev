@@ -28,7 +28,7 @@ const ProjectTitle = ({ title }: Props) => {
   return (
     <h1
       ref={titleRef}
-      className="font-display text-3xl md:text-4xl xl:text-5xl uppercase font-bold bg-gradient-to-r from-light to-primary text-transparent bg-clip-text "
+      className="font-display text-3xl md:text-4xl lg:text-5xl uppercase font-bold bg-gradient-to-r from-light to-primary text-transparent bg-clip-text "
     >
       {title}
     </h1>

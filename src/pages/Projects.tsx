@@ -87,7 +87,7 @@ const Projects = () => {
   return (
     <PageContainer className="bg-secondary">
       {/* Projects section */}
-      <div className="py-28 flex flex-col items-center gap-20">
+      <div className="py-28 flex flex-col items-center gap-20 lg:py-40 lg:gap-40">
         {/* Title for the Projects section */}
         <ProjectTitle title={"PROJECTS"} />
         <div className="relative max-w-7xl flex flex-col gap-10 md:flex-row md:gap-0">
@@ -116,7 +116,7 @@ const Projects = () => {
       </div>
 
       {/* Tech stack section */}
-      <div className="py-28 flex flex-col items-center gap-20 ">
+      <div className="py-28 flex flex-col items-center gap-20 lg:py-40 lg:gap-40">
         <ProjectTitle title={"MY TECH STACK"} />
         {/* Icons wrapper for mobile*/}
         <div className="md:hidden max-w-4xl flex flex-wrap justify-center gap-2 lg:scale-110">

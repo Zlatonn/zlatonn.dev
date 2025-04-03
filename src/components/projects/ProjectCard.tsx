@@ -17,7 +17,7 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
-    // Create slide left animation for mobile view (max-width: 767px)
+    // Create slide bottom-right animation for mobile view (max-width: 767px)
     mm.add("(max-width: 767px)", () => {
       gsap.from(cardRef.current, {
         scrollTrigger: {
@@ -26,9 +26,10 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
           end: () => "+=" + (cardRef.current ? cardRef.current.offsetHeight : 0),
           toggleActions: "restart none none reverse",
         },
-        x: -200,
+        x: 100,
+        y: 100,
         opacity: 0,
-        duration: 0.5,
+        duration: 0.8,
         ease: "back.inOut",
       });
     });
@@ -59,7 +60,7 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
   return (
     <div
       ref={cardRef}
-      className="mx-10 lg:mx-5 p-5 flex flex-col gap-5 shadow-sm shadow-light rounded-3xl bg-gradient-to-b from-secondary to-primary md:flex-row md:gap-20 md:shadow-none md:rounded-none md:bg-none "
+      className="mx-10 lg:mx-5 p-3 sm:p-5 flex flex-col gap-3 sm:gap-5 shadow-sm shadow-light rounded-3xl bg-gradient-to-b from-light/10 to-light overflow-hidden md:flex-row md:gap-20 md:shadow-none md:rounded-none md:bg-none "
     >
       {/* Content */}
       <div ref={contentRef} className="text-light flex flex-col gap-3 md:gap-5">
@@ -84,9 +85,9 @@ const ProjectCard = ({ imgURL, link, title, duration, detail, techStack, setActi
       <a
         href={link}
         target="_blank"
-        className="block md:hidden self-center w-full sm:w-2/3 rounded-2xl overflow-hidden scale-90 rotate-3 hover:shadow-md hover:shadow-secondary hover:scale-100 hover:rotate-0 duration-500"
+        className="block md:hidden self-center w-full border-[2px] mt-1 border-light/10 rounded-xl overflow-hidden scale-100 rotate-0 shadow-sm shadow-secondary hover:scale-90 hover:rotate-3 hover:-translate-y-1 duration-500"
       >
-        <img src={imgURL} alt={`${title}-img`} className="object-cover w-full h-48" />
+        <img src={imgURL} alt={`${title}-img`} className="object-cover w-full h-48 sm:h-80" />
       </a>
     </div>
   );

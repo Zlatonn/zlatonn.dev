@@ -66,9 +66,9 @@ const Contact = () => {
   return (
     <PageContainer className="relative min-h-screen w-screen bg-gradient-to-b from-secondary to-primary">
       {/* Main container with gradient background */}
-      <div className="py-28 flex flex-col items-center gap-20">
+      <div className="py-28 flex flex-col items-center gap-20 lg:gap-40">
         {/* Page title */}
-        <h1 className="font-display text-3xl md:text-4xl xl:text-5xl font-normal text-light">CONTACT ME</h1>
+        <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-normal text-light">CONTACT ME</h1>
 
         <div className="flex flex-col w-full items-center xl:flex-row xl:justify-center xl:gap-20 xl:w-[80%]">
           {/* Left section: Introduction and message */}
