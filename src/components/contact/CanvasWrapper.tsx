@@ -13,7 +13,7 @@ logos.forEach((logo) => {
 
 const CanvasWrapper = () => {
   return (
-    <LazyLoad height={320} offset={500}>
+    <LazyLoad height={320} offset={1000}>
       <div className="w-full h-80">
         <Canvas>
           <ambientLight intensity={5} />
