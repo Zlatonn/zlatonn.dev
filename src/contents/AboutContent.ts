@@ -1,5 +1,5 @@
 export const paragraphs = [
-  "👋 Hi, I’m Tonkar, a Frontend Developer with a background in Automation Programming. I switched to web development to deepen my skills and focus on user-centered solutions. My expertise includes HTML, CSS, JavaScript, React, and Tailwind.",
-  "💻 I aim to become a Full Stack Developer, starting with frontend to understand web apps’ visual and interactive elements. Through various projects, I’ve gained experience in state management and API integration.",
-  "🚀 I’m passionate about continuous learning and eager to grow by contributing to real-world projects.",
+  "👋 Hi, I’m Tonkar, a Junior Full Stack Developer with a passion for building and understanding both frontend and backend systems.",
+  "🛠️ My current goal is to become a more skilled and well-rounded full stack developer. I’m focused on improving my abilities in designing software architecture, developing business logic, and creating practical solutions.",
+  "🚀 I’m committed to continuous learning and always looking for new challenges and technologies that will help me grow as a developer.",
 ];
