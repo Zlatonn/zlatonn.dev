@@ -71,7 +71,10 @@ const Navbar = () => {
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth < 768;
-      if (!mobile) closeSidebar();
+      if (!mobile) {
+        gsap.set(sidebarRef.current, { x: "100%" });
+        document.body.style.overflow = "auto";
+      }
     };
 
     window.addEventListener("resize", handleResize);
