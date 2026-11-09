@@ -8,8 +8,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run build` — type-check (`tsc -b`) then `vite build`
 - `npm run lint` — run ESLint over the repo
 - `npm run preview` — serve the production build locally
+- `npm test` — run all tests once with Vitest (`npx vitest run <file>` for one file)
 
-There is no test runner configured.
+Vitest reads `vite.config.ts`, so the `@/` alias works in tests. It runs in the Node environment; no DOM or React Testing Library is set up yet.
 
 ## Architecture
 
