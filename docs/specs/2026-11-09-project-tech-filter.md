@@ -31,7 +31,7 @@ On the Projects section, a visitor picks one Tech and sees only the Projects tha
 |---|---|---|
 | Pure functions | `src/lib/techFilter.ts` | `getTechOptions(projects)` → ordered Tech list (rules 2–4). `filterProjectsByTech(projects, tech)` → `null` returns all, else matches in original order (rule 6). `toggleTech(current, clicked)` → `null` if `clicked === current`, else `clicked` (rule 7). |
 | Filter bar | `src/components/projects/TechFilter.tsx` | Display only. Props `techs`, `selectedTech`, `onSelect`. Renders "All" + one `<button aria-pressed>` per Tech inside a `role="group"` with an `aria-label`. Clicking "All" calls `onSelect(null)`; clicking a Tech calls `onSelect(tech)`. |
-| Types | `src/types/projects.ts` | Add `Project` (the shape of one entry in `projects`) and `TechFilterProps`. |
+| Types | `src/types/projects.ts` | Add `Project` (the shape of one entry in `projects`) and `TechFilterProps`. `ProjectCardProps` extends `Project` instead of repeating its fields. |
 | Content | `src/contents/ProjectContent.ts` | Type `projects` as `Project[]`. Add `techFilterContent` with `allLabel: "All"` and `ariaLabel: "Filter projects by tech"`. |
 | Page | `src/pages/Projects.tsx` | Holds `selectedTech` state; computes `techOptions` once at module level; renders the filter bar under the title and `filteredProjects` as `ProjectCard`s with `key={link}`. |
 
