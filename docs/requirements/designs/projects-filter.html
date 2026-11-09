@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects Tech Filter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Silkscreen:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="components.css" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #15191f; color: var(--color-light); font-family: var(--font-sans); }
+    .state-label { max-width: 80rem; margin: 3rem auto 0.75rem; padding: 0 1rem; color: var(--color-accent); font-size: 0.875rem; }
+    .state-label small { color: var(--color-light-70); font-weight: 300; }
+    .frame { background: var(--color-secondary); border: 1px dashed var(--color-light-30); margin: 0 auto; }
+    .frame.desktop { max-width: 80rem; }
+    .frame.mobile { width: 375px; }
+
+    .section { display: flex; flex-direction: column; align-items: center; gap: 2.5rem; padding: 4rem 0; }
+    .title { margin: 0; font: 700 2.5rem var(--font-display); text-transform: uppercase; background: linear-gradient(to right, var(--color-light), var(--color-primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .mobile .title { font-size: 1.875rem; }
+
+    .body { display: flex; width: 100%; max-width: 72rem; }
+    .list { width: 50%; display: flex; flex-direction: column; gap: 3rem; padding: 0 1.25rem; }
+    .pinned { width: 50%; display: flex; justify-content: center; }
+    .pinned-img { width: 85%; height: 18rem; border-radius: var(--radius-card); border: 1px solid var(--color-light-30); transform: rotate(3deg) scale(0.9); display: grid; place-items: center; background: linear-gradient(135deg, #2f3a47, #3d5052); color: var(--color-light-70); font-size: 0.875rem; text-align: center; padding: 1rem; }
+
+    .card h2 { margin: 0 0 0.5rem; color: var(--color-accent); font-size: 1.25rem; font-weight: 600; }
+    .card .dur { font-size: 0.875rem; margin-bottom: 0.5rem; }
+    .card p { margin: 0 0 0.75rem; color: var(--color-light-70); font-weight: 300; font-size: 0.875rem; }
+    .techs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .techs span { padding: 0.25rem 0.5rem; background: var(--color-accent); color: var(--color-secondary); border-radius: var(--radius-chip); font-size: 0.75rem; }
+    .techs span.hit { outline: 2px solid var(--color-primary); outline-offset: 1px; }
+
+    .mobile .body { flex-direction: column; }
+    .mobile .list { width: 100%; padding: 0 1.25rem; gap: 2rem; }
+    .mobile .pinned { display: none; }
+    .mobile .card { padding: 0.75rem; border-radius: 1.5rem; background: linear-gradient(to bottom, var(--color-light-10), var(--color-light)); box-shadow: 0 1px 2px var(--color-light); }
+    .mobile .card h2 { color: var(--color-light); font-size: 1rem; }
+    .mobile .card .dur, .mobile .card p { font-size: 0.75rem; }
+    .mobile .techs span { background: var(--color-light); }
+    .mobile .card-img { height: 12rem; margin-top: 0.75rem; border-radius: 0.75rem; background: linear-gradient(135deg, #2f3a47, #3d5052); }
+
+    .note { max-width: 80rem; margin: 0.5rem auto 0; padding: 0 1rem; font-size: 0.75rem; color: var(--color-light-70); }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    const projects = [
+      { title: "Zlatonn's Space", duration: "Feb 2025 ~ Mar 2025", detail: "A personal portfolio website showcasing my projects, skills, and experience in frontend development.", techStack: [["React", "Tailwind", "GSAP"]] },
+      { title: "Warranty Expiry Checker", duration: "Jan 2025 ~ Feb 2025", detail: "A web application for tracking warranty expiration dates of items.", techStack: [["React", "Tailwind", "DaisyUI"], ["Node.js", "TypeScript", "Express", "SQLite"]] },
+      { title: "React Money Tracker", duration: "Dec 2024 ~ Jan 2025", detail: "A financial management application that helps users track their income and expenses.", techStack: [["React", "Tailwind", "Zustand"]] },
+      { title: "Multi Step Form", duration: "Sep 2024 ~ Oct 2024", detail: "A web-based multi-step quiz application.", techStack: [["HTML", "CSS", "JavaScript"]] },
+    ];
+    const techOptions = ["React", "Tailwind", "CSS", "DaisyUI", "Express", "GSAP", "HTML", "JavaScript", "Node.js", "SQLite", "TypeScript", "Zustand"];
+
+    const states = [
+      { label: "State 1: All (default)", note: "On load. All 4 Projects. Pinned image shows the first Project.", tech: null, size: "desktop" },
+      { label: "State 2: React selected", note: "3 Projects. Pinned image switches to the first match. The matching chip on each card is outlined only in this comp, to show why it matched; the real page does not mark it.", tech: "React", size: "desktop" },
+      { label: "State 3: Express selected (Tech used by one Project)", note: "1 Project; Express sits in the second (backend) row. Clicking Express again returns to State 1.", tech: "Express", size: "desktop" },
+      { label: "State 4: Mobile 375px, All", note: "Chips wrap to more rows. No pinned image on mobile; each card has its own image.", tech: null, size: "mobile" },
+      { label: "State 5: Mobile 375px, React selected", note: "", tech: "React", size: "mobile" },
+    ];
+
+    const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    const chip = (label, pressed) => `<button class="tech-chip" aria-pressed="${pressed}">${esc(label)}</button>`;
+
+    document.getElementById("root").innerHTML = states.map((s) => {
+      const list = s.tech ? projects.filter((p) => p.techStack.flat().includes(s.tech)) : projects;
+      const cards = list.map((p) => `
+        <div class="card">
+          <h2>· ${esc(p.title)} ↗</h2>
+          <div class="dur">${p.duration}</div>
+          <p>${esc(p.detail)}</p>
+          ${p.techStack.map((row) => `<div class="techs">${row.map((t) => `<span class="${t === s.tech ? "hit" : ""}">${esc(t)}</span>`).join("")}</div>`).join("")}
+          ${s.size === "mobile" ? `<div class="card-img"></div>` : ""}
+        </div>`).join("");
+      return `
+        <div class="state-label">${s.label}${s.note ? `<br><small>${s.note}</small>` : ""}</div>
+        <div class="frame ${s.size}">
+          <div class="section">
+            <h1 class="title">Projects</h1>
+            <div class="tech-filter" role="group" aria-label="Filter projects by tech">
+              ${chip("All", s.tech === null)}${techOptions.map((t) => chip(t, t === s.tech)).join("")}
+            </div>
+            <div class="body">
+              <div class="list">${cards}</div>
+              <div class="pinned"><div class="pinned-img">Pinned image<br>${esc(list[0].title)}</div></div>
+            </div>
+          </div>
+        </div>`;
+    }).join("") + `<p class="note">Chips are clickable here only for hover/focus styles; states are static.</p>`;
+  </script>
+</body>
+</html>

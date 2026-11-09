@@ -1,0 +1,17 @@
+/* Mirrors tailwind.config.js theme. Keep in sync when the theme changes. */
+:root {
+  --color-primary: #76abae;
+  --color-secondary: #222831;
+  --color-accent: #f3eac2;
+  --color-light: #eeeeee;
+  --color-light-10: rgb(238 238 238 / 0.1);
+  --color-light-30: rgb(238 238 238 / 0.3);
+  --color-light-70: rgb(238 238 238 / 0.7);
+
+  --font-sans: "Poppins", sans-serif;
+  --font-display: "Silkscreen", sans-serif;
+
+  --radius-chip: 0.375rem; /* rounded-md, same as TechStack chips */
+  --radius-card: 1rem;
+  --duration: 300ms;
+}
