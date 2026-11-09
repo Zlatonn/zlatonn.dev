@@ -6,7 +6,7 @@
 
 **Source:** `docs/specs/2026-11-09-project-tech-filter.md`
 
-**Done check:** `npm test`, `npm run lint` and `npm run build` pass, and the 5 browser steps in the "Done check" section at the end of this plan pass at 1280px and at 375px.
+**Done check:** `npm test`, `npm run lint` and `npm run build` pass, and the 7 browser steps in the "Done check" section at the end of this plan pass at 1280px and at 375px.
 
 **Branch:** `feat/project-filter-b`
 
@@ -530,14 +530,35 @@ Run `npm test && npm run lint && npm run build` (all pass), then `npm run dev` a
 1. On load, "All" is selected and 4 cards show.
 2. Click **React**: 3 cards show. At 1280px the pinned image shows Zlatonn's Space.
 3. Click **Express**: 1 card shows (Warranty Expiry Checker). At 1280px the pinned image shows it and sits beside the card, not below it.
-4. Click **Express** again: "All" is selected, 4 cards show, and after scrolling through the list no card stays invisible.
-5. Scroll down to "MY TECH STACK": the pinned image does not overlap it.
+4. Still on **Express** at 1280px, scroll down past the card and back up: the pinned image still shows Warranty Expiry Checker. (The click alone sets the right image even with index keys; only this scroll catches the key bug.)
+5. Click **Express** again: "All" is selected, 4 cards show, the pinned image shows Zlatonn's Space, and after scrolling through the list no card stays invisible.
+6. Click **HTML** (one short card, possibly shorter than the 320px image): at 1280px the image sits beside the card, and when you scroll down to "MY TECH STACK" the image does not overlap it.
+7. Click **HTML** again to go back to "All", scroll down to "MY TECH STACK": the pinned image does not overlap it.
 
-**If step 4 fails (a card stays invisible):** use the fallback the spec already chose (remount the whole list on each filter change). In `src/pages/Projects.tsx`, add `key={selectedTech ?? "all"}` to the `<div ref={contentWrapperRef} …>` element, re-run the Done check, and commit with:
+**If step 5 fails (a card stays invisible):** use the fallback the spec already chose (remount the whole list on each filter change). In `src/pages/Projects.tsx`, add `key={selectedTech ?? "all"}` to the `<div ref={contentWrapperRef} …>` element, re-run the Done check, and commit with:
 
 ```bash
 git add src/pages/Projects.tsx
 git commit -m "🐛 fix: remount project list when the filter changes"
+```
+
+**If step 6 fails (the pin breaks when the list is shorter than the image):** use the spec's fallback (clamp the pin length to at least 0). In `src/pages/Projects.tsx`, inside `getScrollEndPoint`, replace:
+
+```typescript
+      return "+=" + (contentWrapperRef.current.offsetHeight - imageRef.current.offsetHeight + 50);
+```
+
+with:
+
+```typescript
+      return "+=" + Math.max(0, contentWrapperRef.current.offsetHeight - imageRef.current.offsetHeight + 50);
+```
+
+Re-run the Done check, and commit with:
+
+```bash
+git add src/pages/Projects.tsx
+git commit -m "🐛 fix: keep image pin length at zero or more"
 ```
 
 Any other failure: stop and report; it means the plan is wrong.

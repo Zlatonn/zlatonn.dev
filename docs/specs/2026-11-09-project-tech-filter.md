@@ -86,5 +86,11 @@ One test on the real `projects` data: every option from `getTechOptions(projects
 1. Load: "All" selected, 4 cards.
 2. Click React: 3 cards; at 1280px the pinned image shows Zlatonn's Space.
 3. Click Express: 1 card (Warranty Expiry Checker); the pinned image shows it and sits beside the card, not below it.
-4. Click Express again: "All" selected, 4 cards, none stuck invisible after scrolling through the list.
-5. Scroll to the Tech showcase: the pinned image does not overlap it.
+4. Still on Express at 1280px, scroll down past the card and back up: the pinned image still shows Warranty Expiry Checker. This is the step that catches the index-key bug; the click alone sets the right image either way.
+5. Click Express again: "All" selected, 4 cards, the pinned image shows Zlatonn's Space, and none stays invisible after scrolling through the list.
+6. Click HTML (a short single card, possibly shorter than the 320px image): at 1280px the image sits beside the card, and scrolling down to the Tech showcase it does not overlap it.
+7. Back on "All", scroll to the Tech showcase: the pinned image does not overlap it.
+
+**Pre-decided fallbacks** (apply, re-check, commit; do not stop):
+- Step 5 fails (a card stays invisible): remount the whole list on each filter change (the rejected-but-kept option in the decisions table).
+- Step 6 fails (pin breaks when the list is shorter than the image): clamp the pin length in `getScrollEndPoint` to at least 0 with `Math.max(0, …)`. Today the list is always taller than the image, so this case is new with filtering.
