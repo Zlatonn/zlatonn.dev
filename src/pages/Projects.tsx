@@ -44,7 +44,7 @@ const Projects = () => {
   // Calculate the scroll end point based on the content and image sizes
   const getScrollEndPoint = useCallback(() => {
     if (contentWrapperRef.current && imageRef.current) {
-      return "+=" + (contentWrapperRef.current.offsetHeight - imageRef.current.offsetHeight + 50);
+      return "+=" + Math.max(0, contentWrapperRef.current.offsetHeight - imageRef.current.offsetHeight + 50);
     }
     return "+=0";
   }, []);
