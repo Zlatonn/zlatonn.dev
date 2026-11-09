@@ -11,3 +11,8 @@ export function getTechOptions(projects: Project[]): string[] {
     .sort(([techA, countA], [techB, countB]) => countB - countA || techA.localeCompare(techB, "en"))
     .map(([tech]) => tech);
 }
+
+export function filterProjectsByTech(projects: Project[], tech: string | null): Project[] {
+  if (tech === null) return projects;
+  return projects.filter((project) => project.techStack.some((group) => group.includes(tech)));
+}

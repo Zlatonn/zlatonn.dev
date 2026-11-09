@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { getTechOptions } from "@/lib/techFilter";
+import { projects as realProjects } from "@/contents/ProjectContent";
+import { filterProjectsByTech, getTechOptions } from "@/lib/techFilter";
 import { Project } from "@/types/projects";
 
 const project = (title: string, techStack: string[][]): Project => ({
@@ -23,5 +24,24 @@ describe("getTechOptions", () => {
     const projects = [project("a", [["TypeScript"], ["TypeScript"]]), project("b", [["Zod"]]), project("c", [["Zod"]])];
 
     expect(getTechOptions(projects)).toEqual(["Zod", "TypeScript"]);
+  });
+});
+
+describe("filterProjectsByTech", () => {
+  const projects = [project("a", [["React"], ["Express"]]), project("b", [["Vue"]]), project("c", [["React"]])];
+
+  it("returns every project when no tech is selected", () => {
+    expect(filterProjectsByTech(projects, null)).toEqual(projects);
+  });
+
+  it("finds a tech in any group and keeps the original order", () => {
+    expect(filterProjectsByTech(projects, "React").map((p) => p.title)).toEqual(["a", "c"]);
+    expect(filterProjectsByTech(projects, "Express").map((p) => p.title)).toEqual(["a"]);
+  });
+
+  it("matches at least one real project for every tech option", () => {
+    for (const tech of getTechOptions(realProjects)) {
+      expect(filterProjectsByTech(realProjects, tech).length).toBeGreaterThan(0);
+    }
   });
 });
