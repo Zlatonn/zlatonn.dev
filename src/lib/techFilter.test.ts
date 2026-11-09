@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { projects as realProjects } from "@/contents/ProjectContent";
-import { filterProjectsByTech, getTechOptions } from "@/lib/techFilter";
+import { filterProjectsByTech, getTechOptions, toggleTech } from "@/lib/techFilter";
 import { Project } from "@/types/projects";
 
 const project = (title: string, techStack: string[][]): Project => ({
@@ -43,5 +43,21 @@ describe("filterProjectsByTech", () => {
     for (const tech of getTechOptions(realProjects)) {
       expect(filterProjectsByTech(realProjects, tech).length).toBeGreaterThan(0);
     }
+  });
+});
+
+describe("toggleTech", () => {
+  it("selects a tech that is not selected", () => {
+    expect(toggleTech(null, "React")).toBe("React");
+    expect(toggleTech("Vue", "React")).toBe("React");
+  });
+
+  it("goes back to all when the selected tech is clicked again", () => {
+    expect(toggleTech("React", "React")).toBeNull();
+  });
+
+  it("selects all when all is clicked", () => {
+    expect(toggleTech(null, null)).toBeNull();
+    expect(toggleTech("React", null)).toBeNull();
   });
 });

@@ -16,3 +16,7 @@ export function filterProjectsByTech(projects: Project[], tech: string | null): 
   if (tech === null) return projects;
   return projects.filter((project) => project.techStack.some((group) => group.includes(tech)));
 }
+
+export function toggleTech(current: string | null, clicked: string | null): string | null {
+  return clicked === current ? null : clicked;
+}
