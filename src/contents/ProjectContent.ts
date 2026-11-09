@@ -1,4 +1,6 @@
-export const projects = [
+import { Project } from "@/types/projects";
+
+export const projects: Project[] = [
   {
     imgURL: "/images/demo_home.webp",
     link: "https://github.com/Zlatonn/zlatonn.dev",

@@ -1,3 +1,12 @@
+export interface Project {
+  imgURL: string;
+  link: string;
+  title: string;
+  duration: string;
+  detail: string;
+  techStack: string[][];
+}
+
 export interface ProjectTitleProps {
   title: string;
 }
