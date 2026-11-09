@@ -25,3 +25,9 @@ export interface TechBoxProps {
   alt: string;
   title: string;
 }
+
+export interface TechFilterProps {
+  techs: string[];
+  selectedTech: string | null;
+  onSelect: (tech: string | null) => void;
+}

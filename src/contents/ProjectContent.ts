@@ -88,3 +88,8 @@ export const techStacks = {
     { src: "/images/icons/claude.webp", alt: "Claude", title: "Claude" },
   ],
 };
+
+export const techFilterContent = {
+  allLabel: "All",
+  ariaLabel: "Filter projects by tech",
+};
