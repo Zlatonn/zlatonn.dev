@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,8 +8,12 @@ import PageContainer from "@/components/PageContainer";
 import ProjectTitle from "@/components/projects/ProjectTitle";
 import ProjectCard from "@/components/projects/ProjectCard";
 import TechBox from "@/components/projects/TechBox";
+import TechFilter from "@/components/projects/TechFilter";
 
 import { projects, techStacks } from "@/contents/ProjectContent";
+import { filterProjectsByTech, getTechOptions, toggleTech } from "@/lib/techFilter";
+
+const techOptions = getTechOptions(projects);
 
 const Projects = () => {
   // State to track the active project image and the scroll progress
@@ -17,6 +21,21 @@ const Projects = () => {
     imgURL: projects[0].imgURL,
     link: projects[0].link,
   });
+
+  const [selectedTech, setSelectedTech] = useState<string | null>(null);
+  const filteredProjects = filterProjectsByTech(projects, selectedTech);
+
+  const handleSelectTech = (clicked: string | null) => {
+    const next = toggleTech(selectedTech, clicked);
+    const [first] = filterProjectsByTech(projects, next);
+    setSelectedTech(next);
+    setActiveProject({ imgURL: first.imgURL, link: first.link });
+  };
+
+  // The image pin's end depends on the list height, which changes when the filter changes.
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [selectedTech]);
 
   // References to track the DOM elements of the image container and content
   const imageRef = useRef<HTMLAnchorElement>(null);
@@ -88,14 +107,17 @@ const Projects = () => {
     <PageContainer className="bg-secondary">
       {/* Projects section */}
       <div className="py-28 flex flex-col items-center gap-20 lg:py-40 lg:gap-40">
-        {/* Title for the Projects section */}
-        <ProjectTitle title={"PROJECTS"} />
+        {/* Title and tech filter */}
+        <div className="flex flex-col items-center gap-8 lg:gap-10">
+          <ProjectTitle title={"PROJECTS"} />
+          <TechFilter techs={techOptions} selectedTech={selectedTech} onSelect={handleSelectTech} />
+        </div>
         <div className="relative max-w-7xl flex flex-col gap-10 md:flex-row md:gap-0">
           {/* Project Cards */}
           <div ref={contentWrapperRef} className="flex flex-col gap-10 md:gap-20 w-full md:w-1/2">
-            {projects.map(({ imgURL, link, title, duration, detail, techStack }, i) => (
+            {filteredProjects.map(({ imgURL, link, title, duration, detail, techStack }) => (
               <ProjectCard
-                key={`project-${i}`}
+                key={link}
                 imgURL={imgURL}
                 link={link}
                 title={title}
