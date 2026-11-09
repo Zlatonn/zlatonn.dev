@@ -42,6 +42,8 @@ export const projects: Project[] = [
   },
 ];
 
+export const allTechLabel = "All";
+
 export const techStacks = {
   development: [
     { src: "/images/icons/html5.webp", alt: "HTML5", title: "HTML" },

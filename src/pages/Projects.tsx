@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,8 +8,12 @@ import PageContainer from "@/components/PageContainer";
 import ProjectTitle from "@/components/projects/ProjectTitle";
 import ProjectCard from "@/components/projects/ProjectCard";
 import TechBox from "@/components/projects/TechBox";
+import TechFilter from "@/components/projects/TechFilter";
 
 import { projects, techStacks } from "@/contents/ProjectContent";
+import { filterProjects, getTechs } from "@/lib/projectFilter";
+
+const techs = getTechs(projects);
 
 const Projects = () => {
   // State to track the active project image and the scroll progress
@@ -17,6 +21,19 @@ const Projects = () => {
     imgURL: projects[0].imgURL,
     link: projects[0].link,
   });
+
+  const [selectedTech, setSelectedTech] = useState<string | null>(null);
+  const visibleProjects = filterProjects(projects, selectedTech);
+
+  const handleSelectTech = (tech: string | null) => {
+    const [first] = filterProjects(projects, tech);
+    setSelectedTech(tech);
+    setActiveProject({ imgURL: first.imgURL, link: first.link });
+  };
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [selectedTech]);
 
   // References to track the DOM elements of the image container and content
   const imageRef = useRef<HTMLAnchorElement>(null);
@@ -90,12 +107,13 @@ const Projects = () => {
       <div className="py-28 flex flex-col items-center gap-20 lg:py-40 lg:gap-40">
         {/* Title for the Projects section */}
         <ProjectTitle title={"PROJECTS"} />
+        <TechFilter techs={techs} selectedTech={selectedTech} onSelect={handleSelectTech} />
         <div className="relative max-w-7xl flex flex-col gap-10 md:flex-row md:gap-0">
           {/* Project Cards */}
           <div ref={contentWrapperRef} className="flex flex-col gap-10 md:gap-20 w-full md:w-1/2">
-            {projects.map(({ imgURL, link, title, duration, detail, techStack }, i) => (
+            {visibleProjects.map(({ imgURL, link, title, duration, detail, techStack }) => (
               <ProjectCard
-                key={`project-${i}`}
+                key={link}
                 imgURL={imgURL}
                 link={link}
                 title={title}
